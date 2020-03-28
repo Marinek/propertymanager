@@ -1,0 +1,67 @@
+<html>
+
+<head></head>
+
+<body>
+	<div th:fragment="content">
+
+		<form action="#" th:action="@{/account/edit}" th:object="${account}" method="post">
+			<div class="card">
+				<div class="card-header">
+					<strong>Horizontal</strong>
+				</div>
+				<div class=" card-bodycard-block">
+					<div class="row form-group">
+						<div class="col col-md-3">
+							<label for="iban" class=" form-control-label">IBAN</label>
+						</div>
+						<div class="col-12 col-md-9">
+							<input type="text" th:field="*{iban}" placeholder="IBAN..."
+								class="form-control"><span class="help-block">Bitte
+								IBAN des Kontos eingeben.</span>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col col-md-3">
+							<label for="name" class=" form-control-label">Name /
+								Beschreibung</label>
+						</div>
+						<div class="col-12 col-md-9">
+							<input type="text" th:field="*{name}"
+								placeholder="Beschreibung..." class="form-control"><span
+								class="help-block">Eine kurze Beschreibung oder ein Name
+								des Kontos</span>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary btn-sm">
+						<i class="fa fa-dot-circle-o"></i> Speichern
+					</button>
+					<button type="reset" class="btn btn-danger btn-sm">
+						<i class="fa fa-ban"></i> Reset
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				<div class="page-title">
+					<h1>Konto</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active">Hinzuf&uuml;gen</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

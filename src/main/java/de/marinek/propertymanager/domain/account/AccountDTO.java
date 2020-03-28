@@ -13,9 +13,9 @@ import lombok.Setter;
 public class AccountDTO extends DataTransfereObject {
 
 	@Column
-	private String name;
+	private String iban;
 	
 	@Column
-	private String description;
+	private String name;
 	
 }
