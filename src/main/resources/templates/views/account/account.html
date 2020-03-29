@@ -25,8 +25,8 @@
 							<td colspan="4">Es sind keine Konten vorhanden.</td>
 						</tr>
 						<tr th:each="account : ${accounts}">
-							<td><span th:text="${account.iban}"></span></td>
-							<td><span th:text="${account.name}"></span></td>
+							<td><a th:href="@{'/account/show/' + ${account.id}}"><span  th:text="${account.iban}"></a></span></td>
+							<td><a th:href="@{'/accoun/show/' + ${account.id}}"><span th:text="${account.name}"><a></a></span></td>
 							<td align="right">0 &euro;</td>
 							<td>Aktionen</td>
 						</tr>

@@ -1,0 +1,76 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+	<div th:fragment="content">
+		<div class="card">
+			<div class="card-header">
+				<strong>Company</strong><small> Form</small>
+			</div>
+			<form method="POST" enctype="multipart/form-data" action="/import/"
+				class="form-horizontal">
+				<div class="card-body card-block">
+					<div class="form-group">
+						<label for="company" class=" form-control-label">CSV Datei
+							mit Ums&auml;tzen ausw&auml;hlen</label> <input class="form-control"
+							type="file" name="file" />
+					</div>
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary btn-sm">
+						<i class="fa fa-dot-circle-o"></i> Importieren
+					</button>
+					<button type="reset" class="btn btn-danger btn-sm">
+						<i class="fa fa-ban"></i> Reset
+					</button>
+				</div>
+			</form>
+		</div>
+		
+		<div class="card" th:if="${items != null}">
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">IBAN</th>
+							<th scope="col">Absender</th>
+							<th scope="col">Verwendungszweck</th>
+							<th scope="col">Betrag</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${items.empty}">
+							<td colspan="4">Es sind keine Transaktionen f&uuml;r den import vorhanden.</td>
+						</tr>
+						<tr th:each="account : ${items}">
+							<td><span th:text="${account.fromAccountNumber}"></span></td>
+							<td><span th:text="${account.fromName}"></span></td>
+							<td><span th:text="${account.usage}"></span></td>
+							<td align="right"><span th:text="${#numbers.formatDecimal(account.value, 1, 'DEFAULT', 2, 'DEFAULT')}"> &euro;</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				<div class="page-title">
+					<h1>Konto</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active">Liste</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

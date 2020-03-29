@@ -6,5 +6,5 @@ import de.marinek.propertymanager.domain.account.AccountDTO;
 
 public interface AccountRepository extends CrudRepository<AccountDTO, Long> {
 
-	
+	public AccountDTO findByiban(String iban);
 }

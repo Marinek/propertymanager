@@ -36,6 +36,8 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
           .antMatchers("/vendors/**").permitAll()
           .anyRequest().authenticated()
           .and()
+          .headers().frameOptions().sameOrigin()
+          .and()
           .formLogin()
           .loginPage("/page-login.html")
           .loginProcessingUrl("/page_perform_login")
@@ -46,6 +48,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
           .logout()
           .logoutUrl("/perform_logout")
           .deleteCookies("JSESSIONID");
+        
 //          .logoutSuccessHandler(logoutSuccessHandler());
     }
      

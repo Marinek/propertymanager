@@ -24,7 +24,7 @@ public class AccountController {
 	public String showAccount(@PathVariable("id") Long id, Model model) {
 		Optional<AccountDTO> account = repo.findById(id);
 		model.addAttribute("account", account.get());
-		return "views/account/account";
+		return "views/account/account_edit";
 	}
 
 	@RequestMapping("/edit/{id}")
@@ -56,7 +56,5 @@ public class AccountController {
 		repo.save(account);
 		return "redirect:/account";
 	}
-
-
 
 }
