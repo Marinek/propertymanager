@@ -37,7 +37,7 @@ public class ThymeleafLayoutInterceptor extends HandlerInterceptorAdapter {
         	return;
         }
         
-        indexController.fillIndexModel(modelAndView.get);
+        indexController.fillIndexModel(modelAndView);
 
         
         
