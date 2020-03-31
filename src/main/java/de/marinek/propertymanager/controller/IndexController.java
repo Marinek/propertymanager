@@ -1,6 +1,7 @@
 package de.marinek.propertymanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,7 @@ public class IndexController {
 			}
 		}
 
-		model.addObject("periods", businessPlanRepo.findAll());
+		model.addObject("periods", businessPlanRepo.findAll(Sort.by(Sort.Direction.DESC, "name")));
 		
 		return "views/index";
 	}
