@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.marinek.propertymanager.domain.account.AccountDTO;
 import de.marinek.propertymanager.domain.accounting.PeriodDTO;
-import de.marinek.propertymanager.repository.AccountRepository;
 import de.marinek.propertymanager.repository.BusinessPlanRepository;
 
 @Controller
@@ -31,11 +30,11 @@ public class BusinessPlanController {
 
 	@RequestMapping("/edit/{id}")
 	public String editAccount(@PathVariable("id") Long id, Model model) {
-		Optional<AccountDTO> account = repo.findById(id);
+		Optional<PeriodDTO> period = repo.findById(id);
 
-		model.addAttribute("account", account);
+		model.addAttribute("period", period);
 
-		return "views/account/account_edit";
+		return "views/plan/plan_edit";
 	}
 
 	@RequestMapping("/add")
@@ -54,8 +53,8 @@ public class BusinessPlanController {
 	}
 
 	@PostMapping("/edit")
-	public String saveAccount(@ModelAttribute AccountDTO account) {
-		repo.save(account);
-		return "redirect:/account";
+	public String saveAccount(@ModelAttribute PeriodDTO period) {
+		repo.save(period);
+		return "redirect:/period";
 	}
 }
