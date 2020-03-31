@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import de.marinek.propertymanager.domain.DataTransfereObject;
 import de.marinek.propertymanager.domain.accounting.BookingAccount;
+import de.marinek.propertymanager.domain.accounting.PartnerDTO;
 import de.marinek.propertymanager.domain.accounting.PeriodDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,12 @@ public class BudgetPlanDTO extends DataTransfereObject implements Serializable {
 	@Column(length = 512)
 	private String note;
 	
+	@Column
+	private String externReference;
+	
+	@ManyToOne
+	private PartnerDTO partner;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("budget_id")
 	private BookingAccount bookingAccount;
@@ -43,6 +50,5 @@ public class BudgetPlanDTO extends DataTransfereObject implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("period_id")
 	private PeriodDTO periode;
-	
 	
 }

@@ -73,7 +73,7 @@
 
                     <h3 class="menu-title">Abrechnungsperioden</h3><!-- /.menu-title -->
                     <li class="menu-item" th:each="period : ${periods}">
-                        <a href="/import" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bitcoin"></i><span th:text="${period.name}"></span></a>
+                        <a th:href="@{'/plan/show/' + ${period.id}}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bitcoin"></i><span th:text="${period.name}"></span></a>
                     </li>
                     <li class="menu-item">
                         <a href="/import" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bitcoin"></i>Neue Abrechnungsperiode</a>

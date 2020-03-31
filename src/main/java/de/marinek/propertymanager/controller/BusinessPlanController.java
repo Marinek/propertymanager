@@ -11,20 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.marinek.propertymanager.domain.account.AccountDTO;
+import de.marinek.propertymanager.domain.accounting.PeriodDTO;
 import de.marinek.propertymanager.repository.AccountRepository;
+import de.marinek.propertymanager.repository.BusinessPlanRepository;
 
 @Controller
-@RequestMapping("business")
+@RequestMapping("plan")
 public class BusinessPlanController {
 
 	@Autowired
-	private AccountRepository repo;
+	private BusinessPlanRepository repo;
 
 	@RequestMapping("/show/{id}")
 	public String showAccount(@PathVariable("id") Long id, Model model) {
-		Optional<AccountDTO> account = repo.findById(id);
-		model.addAttribute("account", account.get());
-		return "views/account/account_edit";
+		Optional<PeriodDTO> period = repo.findById(id);
+		model.addAttribute("period", period.get());
+		return "views/plans/plan";
 	}
 
 	@RequestMapping("/edit/{id}")
