@@ -25,4 +25,7 @@ public class BookingAccount extends DataTransfereObject {
 	@Enumerated(EnumType.STRING)
 	private AccountType type;
 	
+	@Enumerated(EnumType.STRING)
+	private DistributionKey distributionkey;
+	
 }

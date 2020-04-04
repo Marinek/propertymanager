@@ -4,38 +4,22 @@
 
 <body>
 	<div th:fragment="content">
-
-
-		<div class="card">
-			<div class="card-header">
-				<h2>Ausgaben</h2>
+		
 		<div class="content mt-3">
-			<a href="/account/add" class="btn btn-outline-primary float-right"><i
-				class="fa fa-magic"></i>&nbsp; Konto hinzuf&uuml;gen</a>
+			<a href="/account/add" class="btn btn-outline-primary float-right"><i class="fa fa-magic"></i>&nbsp; Konto hinzuf&uuml;gen</a>
 		</div>
-
-			</div>
+		
+		<div class="card">
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th scope="col">Vertragsart</th>
-							<th scope="col">Vertragspartner</th>
-							<th scope="col">Vertragsnummer</th>
-							<th scope="col">Plan</th>
-							<th scope="col">Hinweise</th>
+							<th scope="col">IBAN</th>
+							<th scope="col">Bezeichnung</th>
+							<th scope="col">Kontostand</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tr th:if="${period.bookingAccounts.empty}">
-						<td colspan="5">Es sind keine Budgetpläne vorhanden.</td>
-					</tr>
-					<tr th:each="account : ${period.bookingAccounts}">
-						<td><span th:text="${account.bookingAccount.name}"></span></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
 					<tbody>
 					</tbody>
 				</table>

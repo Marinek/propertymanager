@@ -34,8 +34,8 @@ public class PeriodDTO extends DataTransfereObject {
 	private Date endDate;
 
 	 @OneToMany(
-		        mappedBy = "id",
-		        cascade = CascadeType.ALL,
+			 	mappedBy = "periode",
+		        cascade = CascadeType.PERSIST,
 		        orphanRemoval = true
 		    )
 	private Set<BudgetPlanDTO> bookingAccounts = new HashSet<BudgetPlanDTO>();
