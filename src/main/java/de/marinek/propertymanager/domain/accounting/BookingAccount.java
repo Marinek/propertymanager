@@ -9,6 +9,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import de.marinek.propertymanager.domain.DataTransfereObject;
+import de.marinek.propertymanager.domain.plan.DistributionKey;
 import lombok.Getter;
 import lombok.Setter;
 

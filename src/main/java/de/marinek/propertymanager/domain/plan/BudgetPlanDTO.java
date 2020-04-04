@@ -12,7 +12,6 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import de.marinek.propertymanager.domain.accounting.BookingAccount;
-import de.marinek.propertymanager.domain.accounting.PeriodDTO;
 import de.marinek.propertymanager.domain.partner.PartnerDTO;
 import lombok.Getter;
 import lombok.Setter;

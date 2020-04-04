@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import de.marinek.propertymanager.domain.accounting.PeriodDTO;
+import de.marinek.propertymanager.domain.plan.PeriodDTO;
 import de.marinek.propertymanager.repository.BusinessPlanRepository;
 
 @Controller

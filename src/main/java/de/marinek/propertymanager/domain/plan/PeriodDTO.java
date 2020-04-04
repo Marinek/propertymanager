@@ -1,5 +1,6 @@
-package de.marinek.propertymanager.domain.accounting;
+package de.marinek.propertymanager.domain.plan;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +15,6 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import de.marinek.propertymanager.domain.DataTransfereObject;
-import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,13 +26,7 @@ import lombok.Setter;
 public class PeriodDTO extends DataTransfereObject {
 
 	@Column
-	private String name;
-
-	@Column
-	private Date startDate;
-
-	@Column
-	private Date endDate;
+	private Integer year;
 
 	@OneToMany(
 			mappedBy = "periode",
@@ -46,5 +40,23 @@ public class PeriodDTO extends DataTransfereObject {
 		ba.setPeriode(this);
 
 		bookingAccounts.add(ba);
+	}
+
+	public Date getEndDate() {
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.MONTH, 11); // 11 = december
+		cal.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+		
+		return cal.getTime();
+	}
+
+	public Date getStartDate() {
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.MONTH, 0); 
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		
+		return cal.getTime();
 	}
 }

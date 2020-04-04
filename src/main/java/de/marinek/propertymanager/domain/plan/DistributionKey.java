@@ -1,4 +1,4 @@
-package de.marinek.propertymanager.domain.accounting;
+package de.marinek.propertymanager.domain.plan;
 
 import lombok.Getter;
 

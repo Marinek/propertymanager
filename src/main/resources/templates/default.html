@@ -50,21 +50,24 @@
                     <li class="active">
                         <a href="/"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
-                    <h3 class="menu-title">Eigentümer</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">Partner</h3><!-- /.menu-title -->
                     <li class="menu-item">
-                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Bearbeiten</a>
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Eigentümer</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Kreditoren</a>
                     </li>
 
-                    <h3 class="menu-title">Wohnungen</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">Eigentum</h3><!-- /.menu-title -->
 
                     <li class="menu-item">
-                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Bearbeiten</a>
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-hospital-o"></i>Wohnungen</a>
                     </li>
                     
-                    <h3 class="menu-title">Konten</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">Finanzen</h3><!-- /.menu-title -->
 
                     <li class="menu-item">
-                        <a href="/account" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bitcoin"></i>Bearbeiten</a>
+                        <a href="/account" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bitcoin"></i>Bankkonten</a>
                     </li>
                     
                     <li class="menu-item">
@@ -73,10 +76,10 @@
 
                     <h3 class="menu-title">Abrechnungsperioden</h3><!-- /.menu-title -->
                     <li class="menu-item" th:each="period : ${periods}">
-                        <a th:href="@{'/plan/show/' + ${period.id}}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bitcoin"></i><span th:text="${period.name}"></span></a>
+                        <a th:href="@{'/plan/show/' + ${period.id}}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder-o"></i><span th:text="${period.year}"></span></a>
                     </li>
                     <li class="menu-item">
-                        <a href="/import" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bitcoin"></i>Neue Abrechnungsperiode</a>
+                        <a href="/import" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-folder-open-o"></i>Neue Abrechnungsperiode</a>
                     </li>
                     
                 </ul>
