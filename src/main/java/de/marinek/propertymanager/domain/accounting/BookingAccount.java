@@ -28,4 +28,22 @@ public class BookingAccount extends DataTransfereObject {
 	@Enumerated(EnumType.STRING)
 	private DistributionKey distributionkey;
 	
+	public static BookingAccount createExpense(String name, DistributionKey distributionkey) {
+		BookingAccount newBookingAccount = new BookingAccount();
+		
+		newBookingAccount.distributionkey = distributionkey;
+		newBookingAccount.name = name;
+		newBookingAccount.type = AccountType.EXPENSE;
+		
+		return newBookingAccount;
+	}
+
+	public static BookingAccount createIncome(String name) {
+		BookingAccount newBookingAccount = new BookingAccount();
+		
+		newBookingAccount.name = name;
+		newBookingAccount.type = AccountType.INCOME;
+		
+		return newBookingAccount;
+	}
 }

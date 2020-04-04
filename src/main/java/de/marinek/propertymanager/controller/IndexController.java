@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import de.marinek.propertymanager.domain.accounting.AccountType;
 import de.marinek.propertymanager.domain.accounting.BookingAccount;
 import de.marinek.propertymanager.domain.accounting.DistributionKey;
+import de.marinek.propertymanager.domain.accounting.PartnerDTO;
 import de.marinek.propertymanager.domain.accounting.PeriodDTO;
+import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 import de.marinek.propertymanager.repository.BusinessPlanRepository;
 
 @Controller
@@ -36,31 +37,53 @@ public class IndexController {
 				businessPlanRepo.save(periodDTO);
 
 				{
-					BookingAccount bookingAccount = new BookingAccount();
+					BudgetPlanDTO plan = new BudgetPlanDTO();
 
-					bookingAccount.setDistributionkey(DistributionKey.A_PP);
-					bookingAccount.setType(AccountType.EXPENSE);
-					bookingAccount.setName("Wasser");
+					plan.setBookingAccount(BookingAccount.createExpense("Wasser", DistributionKey.A_PP));
+					plan.setBudget(555.0);
+					plan.setExternReference("343223423423");
+					
+					PartnerDTO partner = new PartnerDTO();
+					
+					partner.setIban("DE89370400440532013000");
+					partner.setName("Wasserlieferant");
+					
+					plan.setPartner(partner);
 
-					periodDTO.addBookingAccount(bookingAccount);
+					periodDTO.addBudgetPlan(plan);
 				}
 				{
-					BookingAccount bookingAccount = new BookingAccount();
+					BudgetPlanDTO plan = new BudgetPlanDTO();
 					
-					bookingAccount.setDistributionkey(DistributionKey.B_AREA);
-					bookingAccount.setType(AccountType.EXPENSE);
-					bookingAccount.setName("Heizung / Strom");
+					plan.setBookingAccount(BookingAccount.createExpense("Heizung / Strom", DistributionKey.B_AREA));
+					plan.setBudget(4321.0);
+					plan.setExternReference("X4654646");
 					
-					periodDTO.addBookingAccount(bookingAccount);
+					PartnerDTO partner = new PartnerDTO();
+					
+					partner.setIban("DE89370412350123413000");
+					partner.setName("Heizung und Strom");
+					
+					plan.setPartner(partner);
+					
+					periodDTO.addBudgetPlan(plan);
 				}
 				{
-					BookingAccount bookingAccount = new BookingAccount();
+					BudgetPlanDTO plan = new BudgetPlanDTO();
 					
-					bookingAccount.setDistributionkey(DistributionKey.C_EQUAL);
-					bookingAccount.setType(AccountType.EXPENSE);
-					bookingAccount.setName("Müllabfuhr");
+					plan.setBookingAccount(BookingAccount.createExpense("Müllabfuhr", DistributionKey.C_EQUAL));
+					plan.setBudget(555.0);
+					plan.setExternReference("343223423423");
 					
-					periodDTO.addBookingAccount(bookingAccount);
+					PartnerDTO partner = new PartnerDTO();
+					
+					partner.setIban("XS 123/123/123");
+					partner.setName("Stadt Waltrop");
+					
+					plan.setPartner(partner);
+					plan.setNote("Neue Mülltonnen angeschafft.");
+					
+					periodDTO.addBudgetPlan(plan);
 				}
 			}
 			{

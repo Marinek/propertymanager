@@ -9,11 +9,6 @@
 		<div class="card">
 			<div class="card-header">
 				<h2>Ausgaben</h2>
-		<div class="content mt-3">
-			<a href="/account/add" class="btn btn-outline-primary float-right"><i
-				class="fa fa-magic"></i>&nbsp; Konto hinzuf&uuml;gen</a>
-		</div>
-
 			</div>
 			<div class="card-body">
 				<table class="table table-striped">
@@ -31,10 +26,10 @@
 					</tr>
 					<tr th:each="account : ${period.bookingAccounts}">
 						<td><span th:text="${account.bookingAccount.name}"></span></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><span th:text="${account.partner.name}"></span></td>
+						<td><span th:text="${account.externReference}"></span></td>
+						<td align="right"><span th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span> &euro;</td>
+						<td><span th:text="${account.note}"></span></td>
 					</tr>
 					<tbody>
 					</tbody>

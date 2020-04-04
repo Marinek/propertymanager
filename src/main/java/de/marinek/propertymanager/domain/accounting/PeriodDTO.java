@@ -40,11 +40,9 @@ public class PeriodDTO extends DataTransfereObject {
 		    )
 	private Set<BudgetPlanDTO> bookingAccounts = new HashSet<BudgetPlanDTO>();
 	
-	 public void addBookingAccount(BookingAccount ba) {
-		 BudgetPlanDTO budgetPlan = new BudgetPlanDTO();
-		 budgetPlan.setPeriode(this);
-		 budgetPlan.setBookingAccount(ba);
+	 public void addBudgetPlan(BudgetPlanDTO ba) {
+		 ba.setPeriode(this);
 		 
-		 bookingAccounts.add(budgetPlan);
+		 bookingAccounts.add(ba);
 	 }
 }
