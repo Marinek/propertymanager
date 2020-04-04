@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-public class DataTransfereObject {
+public abstract class DataTransfereObject {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

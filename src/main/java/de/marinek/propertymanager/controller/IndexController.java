@@ -1,5 +1,8 @@
 package de.marinek.propertymanager.controller;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,8 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import de.marinek.propertymanager.domain.accounting.BookingAccount;
 import de.marinek.propertymanager.domain.accounting.DistributionKey;
-import de.marinek.propertymanager.domain.accounting.PartnerDTO;
 import de.marinek.propertymanager.domain.accounting.PeriodDTO;
+import de.marinek.propertymanager.domain.partner.CreditorDTO;
+import de.marinek.propertymanager.domain.partner.OwnerDTO;
 import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 import de.marinek.propertymanager.repository.BusinessPlanRepository;
 
@@ -34,6 +38,21 @@ public class IndexController {
 			{
 				PeriodDTO periodDTO = new PeriodDTO();
 				periodDTO.setName("2020");
+				
+				Calendar cal = Calendar.getInstance();
+				cal.set(Calendar.YEAR, 2020);
+				cal.set(Calendar.DAY_OF_YEAR, 1);    
+				Date start = cal.getTime();
+
+				//set date to last day of 2014
+				cal.set(Calendar.YEAR, 2020);
+				cal.set(Calendar.MONTH, 11); // 11 = december
+				cal.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+
+				Date end = cal.getTime();
+				
+				periodDTO.setStartDate(start);
+				periodDTO.setEndDate(end);
 				businessPlanRepo.save(periodDTO);
 
 				{
@@ -43,7 +62,7 @@ public class IndexController {
 					plan.setBudget(555.0);
 					plan.setExternReference("343223423423");
 					
-					PartnerDTO partner = new PartnerDTO();
+					CreditorDTO partner = new CreditorDTO();
 					
 					partner.setIban("DE89370400440532013000");
 					partner.setName("Wasserlieferant");
@@ -59,10 +78,10 @@ public class IndexController {
 					plan.setBudget(4321.0);
 					plan.setExternReference("X4654646");
 					
-					PartnerDTO partner = new PartnerDTO();
+					CreditorDTO partner = new CreditorDTO();
 					
 					partner.setIban("DE89370412350123413000");
-					partner.setName("Heizung und Strom");
+					partner.setName("Heizung und Strom GmbH");
 					
 					plan.setPartner(partner);
 					
@@ -75,9 +94,9 @@ public class IndexController {
 					plan.setBudget(555.0);
 					plan.setExternReference("XS 123/123/123");
 					
-					PartnerDTO partner = new PartnerDTO();
+					CreditorDTO partner = new CreditorDTO();
 					
-					partner.setIban("XS 123/123/123");
+					partner.setIban("DE8937041212356000");
 					partner.setName("Stadt Waltrop");
 					
 					plan.setPartner(partner);
@@ -92,13 +111,14 @@ public class IndexController {
 					plan.setBudget(195.0);
 					plan.setExternReference("Eigentümer A");
 					
-					PartnerDTO partner = new PartnerDTO();
+					OwnerDTO partner = new OwnerDTO();
 					
-					partner.setIban("DE213605010500012345678");
-					partner.setName("XXX");
+					partner.setIban("DE21360501050001234567");
+					partner.setName("Mustermann");
+					partner.setSurname("Max");
 					
 					plan.setPartner(partner);
-					plan.setNote("Festgelegt seit 1.1.2019");
+					plan.setNote("Seit 1.1.2019");
 					
 					periodDTO.addBudgetPlan(plan);
 				}

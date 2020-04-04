@@ -4,11 +4,21 @@
 
 <body>
 	<div th:fragment="content">
-
-
 		<div class="card">
 			<div class="card-header">
-				<h2>Ausgaben</h2>
+				<div class="row">
+					<div class="col-sm-4">
+						<h4 class="card-title mb-0">Ausgaben</h4>
+						<div class="small text-muted" th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">Ausgaben</div>
+					</div>
+
+					<div class="col-sm-8 hidden-sm-down">
+						<button type="button"
+							class="btn btn-primary float-right bg-flat-color-1">
+							<i class="fa fa-plus">&nbsp;Hinzuf&uuml;gen</i>
+						</button>
+					</div>
+				</div>
 			</div>
 			<div class="card-body">
 				<table class="table table-striped">
@@ -24,11 +34,14 @@
 					<tr th:if="${period.bookingAccounts.empty}">
 						<td colspan="5">Es sind keine Budgetpl&auml;ne vorhanden.</td>
 					</tr>
-					<tr th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'EXPENSE']}">
+					<tr
+						th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'EXPENSE']}">
 						<td><span th:text="${account.bookingAccount.name}"></span></td>
 						<td><span th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>
-						<td align="right"><span th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span> &euro;</td>
+						<td align="right"><span
+							th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span>
+							&euro;</td>
 						<td><span th:text="${account.note}"></span></td>
 					</tr>
 					<tbody>
@@ -38,27 +51,43 @@
 		</div>
 		<div class="card">
 			<div class="card-header">
-				<h2>Einnahmen</h2>
+				<div class="row">
+					<div class="col-sm-4">
+						<h4 class="card-title mb-0">Einnahmen</h4>
+						<div class="small text-muted" th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">Ausgaben</div>
+					</div>
+
+					<div class="col-sm-8 hidden-sm-down">
+						<button type="button"
+							class="btn btn-primary float-right bg-flat-color-1">
+							<i class="fa fa-plus">&nbsp;Hinzuf&uuml;gen</i>
+						</button>
+					</div>
+				</div>
 			</div>
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th scope="col">Art</th>
-							<th scope="col">Vertragspartner</th>
-							<th scope="col">Vertragsnummer</th>
+							<th scope="col">Name</th>
+							<th scope="col">Beschreibung</th>
 							<th scope="col">Plan</th>
 							<th scope="col">Hinweise</th>
 						</tr>
 					</thead>
 					<tr th:if="${period.bookingAccounts.empty}">
-						<td colspan="5">Es sind keine Budgetpl&auml;ne vorhanden.</td>
+						<td colspan="5">Es sind keine Einnahmen vorhanden.</td>
 					</tr>
-					<tr th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'INCOME']}">
+					<tr
+						th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'INCOME']}">
 						<td><span th:text="${account.bookingAccount.name}"></span></td>
-						<td><span th:text="${account.partner.name}"></span></td>
+						<td><span th:text="${account.partner.surname}"></span>&nbsp;<span
+							th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>
-						<td align="right"><span th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span> &euro;</td>
+						<td align="right"><span
+							th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span>
+							&euro;</td>
 						<td><span th:text="${account.note}"></span></td>
 					</tr>
 					<tbody>
