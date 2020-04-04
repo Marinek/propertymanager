@@ -38,9 +38,10 @@ public class BookingAccount extends DataTransfereObject {
 		return newBookingAccount;
 	}
 
-	public static BookingAccount createIncome(String name) {
+	public static BookingAccount createIncome(String name, DistributionKey distributionkey) {
 		BookingAccount newBookingAccount = new BookingAccount();
 		
+		newBookingAccount.distributionkey = distributionkey;
 		newBookingAccount.name = name;
 		newBookingAccount.type = AccountType.INCOME;
 		

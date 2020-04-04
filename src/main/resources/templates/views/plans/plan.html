@@ -22,9 +22,39 @@
 						</tr>
 					</thead>
 					<tr th:if="${period.bookingAccounts.empty}">
-						<td colspan="5">Es sind keine Budgetpläne vorhanden.</td>
+						<td colspan="5">Es sind keine Budgetpl&auml;ne vorhanden.</td>
 					</tr>
-					<tr th:each="account : ${period.bookingAccounts}">
+					<tr th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'EXPENSE']}">
+						<td><span th:text="${account.bookingAccount.name}"></span></td>
+						<td><span th:text="${account.partner.name}"></span></td>
+						<td><span th:text="${account.externReference}"></span></td>
+						<td align="right"><span th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span> &euro;</td>
+						<td><span th:text="${account.note}"></span></td>
+					</tr>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<h2>Einnahmen</h2>
+			</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Art</th>
+							<th scope="col">Vertragspartner</th>
+							<th scope="col">Vertragsnummer</th>
+							<th scope="col">Plan</th>
+							<th scope="col">Hinweise</th>
+						</tr>
+					</thead>
+					<tr th:if="${period.bookingAccounts.empty}">
+						<td colspan="5">Es sind keine Budgetpl&auml;ne vorhanden.</td>
+					</tr>
+					<tr th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'INCOME']}">
 						<td><span th:text="${account.bookingAccount.name}"></span></td>
 						<td><span th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>

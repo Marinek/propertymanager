@@ -9,7 +9,11 @@ public enum DistributionKey {
 			"75 % der Gesamtsumme geteilt durch Anzahl der Personen"),
 	B_AREA("B", "Gesamtsumme geteilt durch 3 Wohneinheiten"),
 	C_EQUAL("C", "Gesamtsumme geteilt durch 3 Wohneinheiten"),
-	D_ASSETS("D", "Gesamtsumme geteilt durch Eigentümeranteile");
+	D_ASSETS("D", "Gesamtsumme geteilt durch Eigentümeranteile"),
+	
+	//Einnahmen
+	PM_INCOME("Monatlich", "Vorrauszahung pro Monat"),
+	PA_INCOME("Jährlich", "Sonstige Einkünfte Jährlich");
 	
 	private String name;
 	

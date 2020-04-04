@@ -73,7 +73,7 @@ public class IndexController {
 					
 					plan.setBookingAccount(BookingAccount.createExpense("Müllabfuhr", DistributionKey.C_EQUAL));
 					plan.setBudget(555.0);
-					plan.setExternReference("343223423423");
+					plan.setExternReference("XS 123/123/123");
 					
 					PartnerDTO partner = new PartnerDTO();
 					
@@ -82,6 +82,23 @@ public class IndexController {
 					
 					plan.setPartner(partner);
 					plan.setNote("Neue Mülltonnen angeschafft.");
+					
+					periodDTO.addBudgetPlan(plan);
+				}
+				{
+					BudgetPlanDTO plan = new BudgetPlanDTO();
+					
+					plan.setBookingAccount(BookingAccount.createIncome("Vorrauszahlung", DistributionKey.PM_INCOME));
+					plan.setBudget(195.0);
+					plan.setExternReference("Eigentümer A");
+					
+					PartnerDTO partner = new PartnerDTO();
+					
+					partner.setIban("DE213605010500012345678");
+					partner.setName("XXX");
+					
+					plan.setPartner(partner);
+					plan.setNote("Festgelegt seit 1.1.2019");
 					
 					periodDTO.addBudgetPlan(plan);
 				}
