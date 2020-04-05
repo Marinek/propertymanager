@@ -1,15 +1,24 @@
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head></head>
 
 <body>
 	<div th:fragment="content">
-		
-		<div class="content mt-3">
-			<a href="/account/add" class="btn btn-outline-primary float-right"><i class="fa fa-magic"></i>&nbsp; Konto hinzuf&uuml;gen</a>
-		</div>
-		
 		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-sm-4">
+						<h4 class="card-title mb-0">Ausgaben</h4>
+					</div>
+
+					<div class="col-sm-8 hidden-sm-down">
+						<a href="/account/add" class="btn btn-outline-primary float-right"><i
+							class="fa fa-magic"></i>&nbsp; Konto hinzuf&uuml;gen</a>
+						<a href="/account/import" class="btn btn-outline-primary float-right"><i
+							class="fa fa-magic"></i>&nbsp; Ums&auml;tze importieren</a>
+					</div>
+				</div>
+			</div>
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
@@ -25,8 +34,10 @@
 							<td colspan="4">Es sind keine Konten vorhanden.</td>
 						</tr>
 						<tr th:each="account : ${accounts}">
-							<td><a th:href="@{'/account/show/' + ${account.id}}"><span  th:text="${account.iban}"></a></span></td>
-							<td><a th:href="@{'/accoun/show/' + ${account.id}}"><span th:text="${account.name}"><a></a></span></td>
+							<td><a th:href="@{'/account/show/' + ${account.id}}"><span
+									th:text="${account.iban}"></span></a></td>
+							<td><a th:href="@{'/account/show/' + ${account.id}}"><span
+									th:text="${account.name}"></span></a></td>
 							<td align="right">0 &euro;</td>
 							<td>Aktionen</td>
 						</tr>

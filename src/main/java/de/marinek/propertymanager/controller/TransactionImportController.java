@@ -17,7 +17,7 @@ import de.marinek.propertymanager.components.TransactionImportComponent;
 import de.marinek.propertymanager.domain.account.TransactionDTO;
 
 @Controller
-@RequestMapping("/import")
+@RequestMapping("/account/import")
 public class TransactionImportController {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class TransactionImportController {
 		
 		redirectAttributes.addFlashAttribute("items", loadObjectList);
 
-		return "redirect:/import";
+		return "redirect:/account/import";
 	}
 
 
