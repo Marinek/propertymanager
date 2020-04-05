@@ -13,6 +13,8 @@ import de.marinek.propertymanager.domain.partner.OwnerDTO;
 import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 import de.marinek.propertymanager.domain.plan.DistributionKey;
 import de.marinek.propertymanager.domain.plan.PeriodDTO;
+import de.marinek.propertymanager.domain.property.Apartment;
+import de.marinek.propertymanager.repository.ApartmentRepository;
 import de.marinek.propertymanager.repository.BusinessPlanRepository;
 
 @Controller
@@ -20,12 +22,49 @@ public class IndexController {
 
 	@Autowired
 	private BusinessPlanRepository businessPlanRepo;
+	
+	@Autowired
+	private ApartmentRepository apartmentRepo;
 
 	@GetMapping("/")
 	@PreAuthorize(value = "")
 	public String fillIndexModel(ModelAndView model) {
 
 		if(businessPlanRepo.count() == 0) {
+			{
+				
+				Apartment app = new Apartment();
+				app.setName("Oben");
+				app.setPersons(2);
+				app.setShares(286.85);
+				app.setArea(76.0);
+				
+				OwnerDTO owner = new OwnerDTO();
+				owner.setName("Unten");
+				owner.setSurname("Eigentümer");
+				
+				app.setOwner(owner);
+				
+				apartmentRepo.save(app);
+			}
+			{
+				
+				Apartment app = new Apartment();
+				app.setName("Unten");
+				app.setPersons(2);
+				app.setShares(361.53);
+				app.setArea(93.0);
+				
+				OwnerDTO owner = new OwnerDTO();
+				owner.setName("Unten");
+				owner.setSurname("Eigentümer");
+				
+				app.setOwner(owner);
+				
+				apartmentRepo.save(app);
+			}
+			
+			
 			{
 				PeriodDTO periodDTO = new PeriodDTO();
 				periodDTO.setYear(2019);
@@ -104,6 +143,16 @@ public class IndexController {
 					plan.setNote("Seit 1.1.2019");
 					
 					periodDTO.addBudgetPlan(plan);
+					
+					Apartment app = new Apartment();
+					app.setName("Mitte");
+					app.setPersons(1);
+					app.setShares(351.62);
+					app.setArea(93.0);
+					
+					app.setOwner(partner);
+					
+					apartmentRepo.save(app);
 				}
 			}
 			{

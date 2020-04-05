@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import de.marinek.propertymanager.domain.DataTransfereObject;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +29,11 @@ public class PeriodDTO extends DataTransfereObject {
 
 	@Column
 	private Integer year;
-
+	
+	@Column
+	@CreatedDate
+	private Date createdAt = new Date();
+	
 	@OneToMany(
 			mappedBy = "periode",
 			cascade = CascadeType.PERSIST,

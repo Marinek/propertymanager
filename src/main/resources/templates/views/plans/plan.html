@@ -108,7 +108,7 @@
 			<div class="page-header float-right">
 				<div class="page-title">
 					<ol class="breadcrumb text-right">
-						<li class="active" th:text="${period.year}">Liste</li>
+						<li class="active" th:text="'Erstellt am: ' + ${#dates.format(period.createdAt,'dd.MM.yyyy')}">Liste</li>
 					</ol>
 				</div>
 			</div>

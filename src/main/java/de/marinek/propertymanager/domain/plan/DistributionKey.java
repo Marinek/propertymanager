@@ -12,8 +12,8 @@ public enum DistributionKey {
 	D_ASSETS("D", "Gesamtsumme geteilt durch Eigentümeranteile"),
 	
 	//Einnahmen
-	PM_INCOME("Monatlich", "Vorrauszahung pro Monat"),
-	PA_INCOME("Jährlich", "Sonstige Einkünfte Jährlich");
+	PM_INCOME("Monatlich", "Monatliche Einnahmen"),
+	PA_INCOME("Jährlich", "Jährliche Einnahmen");
 	
 	private String name;
 	
