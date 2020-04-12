@@ -18,10 +18,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:if="${appartments.empty}">
+						<tr th:if="${items.empty}">
 							<td colspan="4">Es sind keine Wohnungen vorhanden.</td>
 						</tr>
-						<tr th:each="a : ${appartments}">
+						<tr th:each="a : ${items}">
 							<td><span  th:text="${a.name}"></span></td>
 							<td><span  th:text="${a.owner.surname + ' ' + a.owner.name}"></span></td>
 							<td><span  th:text="${a.shares}"></span>&nbsp;/&nbsp;1.000</td>

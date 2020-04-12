@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Apartment extends DataTransfereObject{
+public class ApartmentDTO extends DataTransfereObject{
 
 	@Column
 	private String name;

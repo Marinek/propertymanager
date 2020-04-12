@@ -13,7 +13,7 @@ import de.marinek.propertymanager.domain.partner.OwnerDTO;
 import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 import de.marinek.propertymanager.domain.plan.DistributionKey;
 import de.marinek.propertymanager.domain.plan.PeriodDTO;
-import de.marinek.propertymanager.domain.property.Apartment;
+import de.marinek.propertymanager.domain.property.ApartmentDTO;
 import de.marinek.propertymanager.repository.ApartmentRepository;
 import de.marinek.propertymanager.repository.BusinessPlanRepository;
 
@@ -33,7 +33,7 @@ public class IndexController {
 		if(businessPlanRepo.count() == 0) {
 			{
 				
-				Apartment app = new Apartment();
+				ApartmentDTO app = new ApartmentDTO();
 				app.setName("Oben");
 				app.setPersons(2);
 				app.setShares(286.85);
@@ -49,7 +49,7 @@ public class IndexController {
 			}
 			{
 				
-				Apartment app = new Apartment();
+				ApartmentDTO app = new ApartmentDTO();
 				app.setName("Unten");
 				app.setPersons(2);
 				app.setShares(361.53);
@@ -144,7 +144,7 @@ public class IndexController {
 					
 					periodDTO.addBudgetPlan(plan);
 					
-					Apartment app = new Apartment();
+					ApartmentDTO app = new ApartmentDTO();
 					app.setName("Mitte");
 					app.setPersons(1);
 					app.setShares(351.62);
