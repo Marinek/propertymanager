@@ -23,4 +23,5 @@ public abstract class PartnerDTO extends DataTransfereObject {
 	
 	private String name;
 	
+	public abstract String getPartnerIdent();	
 }

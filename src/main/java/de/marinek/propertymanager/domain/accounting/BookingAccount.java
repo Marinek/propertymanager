@@ -48,4 +48,9 @@ public class BookingAccount extends DataTransfereObject {
 		
 		return newBookingAccount;
 	}
+	
+	@Override
+	public String toString() {
+		return type.getName() + ": " + this.name  + " (" + distributionkey.getName() + ")";
+	}
 }

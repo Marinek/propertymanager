@@ -17,4 +17,10 @@ import lombok.Setter;
 @DiscriminatorValue(value = "C")
 public class CreditorDTO extends PartnerDTO {
 
+	@Override
+	public String getPartnerIdent() {
+		return this.getName() + " (Firma)";
+	}
+
+	
 }

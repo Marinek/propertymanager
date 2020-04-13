@@ -13,10 +13,8 @@
 					</div>
 
 					<div class="col-sm-8 hidden-sm-down">
-						<button type="button"
-							class="btn btn-primary float-right bg-flat-color-1">
-							<i class="fa fa-plus">&nbsp;Hinzuf&uuml;gen</i>
-						</button>
+						<a th:href="'/plan/add/' + ${period.id}" class="btn btn-outline-primary float-right"><i
+							class="fa fa-magic"></i>&nbsp; Budget hinzuf&uuml;gen</a>
 					</div>
 				</div>
 			</div>
@@ -27,8 +25,8 @@
 							<th scope="col">Vertragsart</th>
 							<th scope="col">Vertragspartner</th>
 							<th scope="col">Vertragsnummer</th>
-							<th scope="col">Plan</th>
-							<th scope="col">Hinweise</th>
+							<th class="text-right" scope="col">Plan</th>
+							<th class="text-right" scope="col">Hinweise</th>
 						</tr>
 					</thead>
 					<tr th:if="${period.bookingAccounts.empty}">
@@ -39,10 +37,10 @@
 						<td><span th:text="${account.bookingAccount.name}"></span></td>
 						<td><span th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>
-						<td align="right"><span
+						<td class="text-right text-nowrap"><span
 							th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span>
 							&euro;</td>
-						<td><span th:text="${account.note}"></span></td>
+						<td class="text-right"><span th:text="${account.note}"></span></td>
 					</tr>
 					<tbody>
 					</tbody>
@@ -85,7 +83,7 @@
 						<td><span th:text="${account.partner.surname}"></span>&nbsp;<span
 							th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>
-						<td align="right"><span
+						<td class="text-right text-nowrap"><span
 							th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span>
 							&euro;</td>
 						<td><span th:text="${account.note}"></span></td>

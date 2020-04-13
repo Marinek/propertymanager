@@ -1,0 +1,93 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+	<div th:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<form action="#" th:action="@{/plan/add}" th:object="${budget}"	method="post">
+					<div class="form-group row">
+						<label for="partner" class="col-4 col-form-label">Vertragspartner</label>
+						<div class="col-8">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-address-card"></i>
+									</div>
+								</div>
+								<select class="form-control" id="partner" name="partner" th:field="*{partner}">
+									<option th:each="p : ${partner}" th:value="${p.id}"
+										th:text="${p.partnerIdent}" />
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="partner" class="col-4 col-form-label">Verrechnungsschl&uuml;ssel</label>
+						<div class="col-8">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-address-card"></i>
+									</div>
+								</div>
+								<select class="form-control" id="bookingAccount" name="bookingAccount" th:field="*{bookingAccount}">
+									<option th:each="p : ${accounts}" th:value="${p.id}" th:text="${p}" />
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="externReference" class="col-4 col-form-label">Referenz</label>
+						<div class="col-8">
+							<input id="externReference" name="externReference"
+								placeholder="Vertragsnummer, Kontonummer oder Bezeichnung"
+								type="text" class="form-control">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-4 col-form-label" for="note">Hinweise</label>
+						<div class="col-8">
+							<input id="note" name="note" placeholder="Hinweis" type="text"
+								class="form-control">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="budget" class="col-4 col-form-label">Budget in
+							&euro;</label>
+						<div class="col-8">
+							<input id="budget" name="budget" placeholder="&euro;" type="text"
+								class="form-control">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="offset-4 col-8">
+							<button name="submit" type="submit" class="btn btn-primary">Speichern</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{periode}">
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				<div class="page-title">
+					<h1>Wirtschaftsplan: Neues Budget</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active" th:text="${period.year}"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

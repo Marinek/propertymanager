@@ -19,4 +19,8 @@ public class OwnerDTO extends PartnerDTO {
 
 	private String surname;
 	
+	@Override
+	public String getPartnerIdent() {
+		return surname + " " + this.getName() + " (Besitzer)";
+	}
 }

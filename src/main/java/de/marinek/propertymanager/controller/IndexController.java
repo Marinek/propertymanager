@@ -15,13 +15,13 @@ import de.marinek.propertymanager.domain.plan.DistributionKey;
 import de.marinek.propertymanager.domain.plan.PeriodDTO;
 import de.marinek.propertymanager.domain.property.ApartmentDTO;
 import de.marinek.propertymanager.repository.ApartmentRepository;
-import de.marinek.propertymanager.repository.BusinessPlanRepository;
+import de.marinek.propertymanager.repository.BusinessPeriodRepository;
 
 @Controller
 public class IndexController {
 
 	@Autowired
-	private BusinessPlanRepository businessPlanRepo;
+	private BusinessPeriodRepository businessPlanRepo;
 	
 	@Autowired
 	private ApartmentRepository apartmentRepo;

@@ -1,9 +1,9 @@
 package de.marinek.propertymanager.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-import de.marinek.propertymanager.domain.plan.PeriodDTO;
+import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 
-public interface BusinessPlanRepository extends JpaRepository<PeriodDTO, Long> {
+public interface BusinessPlanRepository extends  CrudRepository<BudgetPlanDTO, Long> {
 
 }
