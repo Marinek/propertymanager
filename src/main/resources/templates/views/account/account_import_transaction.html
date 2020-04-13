@@ -8,8 +8,8 @@
 			<div class="card-header">
 				<strong>Company</strong><small> Form</small>
 			</div>
-			<form method="POST" enctype="multipart/form-data" action="/account/import/"
-				class="form-horizontal">
+			<form method="POST" enctype="multipart/form-data"
+				action="/account/import/" class="form-horizontal">
 				<div class="card-body card-block">
 					<div class="form-group">
 						<label for="company" class=" form-control-label">CSV Datei
@@ -27,30 +27,10 @@
 				</div>
 			</form>
 		</div>
-		
+
 		<div class="card" th:if="${items != null}">
-			<div class="card-body">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th scope="col">IBAN</th>
-							<th scope="col">Absender</th>
-							<th scope="col">Verwendungszweck</th>
-							<th scope="col">Betrag</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:if="${items.empty}">
-							<td colspan="4">Es sind keine Transaktionen f&uuml;r den import vorhanden.</td>
-						</tr>
-						<tr th:each="account : ${items}">
-							<td><span th:text="${account.fromAccountNumber}"></span></td>
-							<td><span th:text="${account.fromName}"></span></td>
-							<td><span th:text="${account.usage}"></span></td>
-							<td align="right"><span th:text="${#numbers.formatDecimal(account.value, 1, 'DEFAULT', 2, 'DEFAULT')}"> &euro;</span></td>
-						</tr>
-					</tbody>
-				</table>
+			<div
+				th:replace="views/account/account_transaction.html :: transaction(transactions=${items})">
 			</div>
 		</div>
 	</div>

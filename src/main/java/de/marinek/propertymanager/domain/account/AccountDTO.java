@@ -3,6 +3,7 @@ package de.marinek.propertymanager.domain.account;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
@@ -12,9 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import de.marinek.propertymanager.components.converter.StringToIBANConverter;
 import de.marinek.propertymanager.domain.DataTransfereObject;
 import lombok.Getter;
 import lombok.Setter;
+import nl.garvelink.iban.IBAN;
 
 @Getter
 @Setter
@@ -24,7 +27,8 @@ import lombok.Setter;
 public class AccountDTO extends DataTransfereObject {
 
 	@Column(nullable =  false, unique = true)
-	private String iban;
+    @Convert(converter = StringToIBANConverter.class)
+	private IBAN iban;
 	
 	@Column
 	private String name;

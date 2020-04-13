@@ -11,10 +11,10 @@ public class SHA256Checksum {
 	
 	private  static Logger logger = LoggerFactory.getLogger(SHA256Checksum.class);
 
-	public static String checksum(String checksum) {
+	public static String checksum(String... checksum) {
 		try {
 			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-			messageDigest.update(checksum.getBytes());
+			messageDigest.update(String.join("#", checksum).getBytes());
 			String encryptedString = new String(messageDigest.digest());
 			
 			encryptedString = Base64.getEncoder().encodeToString(encryptedString.getBytes());

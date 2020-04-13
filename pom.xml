@@ -57,6 +57,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>nl.garvelink.oss</groupId>
+			<artifactId>iban</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>

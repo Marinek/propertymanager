@@ -21,6 +21,7 @@ import de.marinek.propertymanager.domain.account.AccountDTO;
 import de.marinek.propertymanager.domain.account.TransactionDTO;
 import de.marinek.propertymanager.repository.AccountRepository;
 import de.marinek.propertymanager.repository.TransactionRepository;
+import nl.garvelink.iban.IBAN;
 
 @Component
 public class TransactionImportComponent {
@@ -54,10 +55,13 @@ public class TransactionImportComponent {
 	        
 	        for(TransactionDTO transaction : newlyImportedTransactions) {
 	        	AccountDTO account = resolveAccount(transaction.getAccountIBAN());
-	        	
+
 	        	if(account != null) {
 	        		transaction.setAccount(account);
 	        	}
+	        	
+	        	transaction.setUsage(transaction.getUsage().replace('+', ' '));
+	        	
 	        }
 	        
 	        transactionRepo.saveAll(newlyImportedTransactions);
@@ -71,7 +75,7 @@ public class TransactionImportComponent {
 	}
 	
 	@Cacheable("accounts")
-	private AccountDTO resolveAccount(String iban) {
+	private AccountDTO resolveAccount(IBAN iban) {
 		AccountDTO account = accountRepo.findByiban(iban);
 		
 		if(account == null) {

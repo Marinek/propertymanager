@@ -7,15 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvCustomBindByName;
 import com.opencsv.bean.CsvDate;
 
+import de.marinek.propertymanager.components.converter.StringToIBANConverter;
+import de.marinek.propertymanager.components.utils.SHA256Checksum;
 import de.marinek.propertymanager.domain.DataTransfereObject;
 import lombok.Getter;
 import lombok.Setter;
+import nl.garvelink.iban.IBAN;
 
 @Entity
 @Getter
@@ -28,8 +33,8 @@ public class TransactionDTO extends DataTransfereObject {
 	private AccountDTO account;
 	
 	@Transient
-	@CsvBindByName(column = "Auftragskonto")
-	private String accountIBAN;
+	@CsvCustomBindByName(column = "Auftragskonto", converter = StringToIBANConverter.class)
+	private IBAN accountIBAN;
 	
 	
 	@Column
@@ -50,11 +55,20 @@ public class TransactionDTO extends DataTransfereObject {
 	private String fromName;
 	
 	@Column
-	@CsvBindByName(column = "Kontonummer")
-	private String fromAccountNumber;
+	@CsvCustomBindByName(column = "Kontonummer", converter = StringToIBANConverter.class)
+	private IBAN fromAccountNumber;
 	
 	@Column
 	@CsvBindByName(column = "betrag", locale = "de")
 	private Double value;
+	
+	@Column(unique = true)
+	private String checksum;
+	
+	@PrePersist
+	private void calucateChecksum() {
+		checksum = SHA256Checksum.checksum(usage, String.valueOf(date), String.valueOf(value));
+	}
+	
 
 }
