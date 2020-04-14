@@ -15,7 +15,7 @@ import de.marinek.propertymanager.repository.AccountRepository;
 
 @Controller
 @RequestMapping("/account")
-public class AccountController {
+public class BankAccountController {
 
 	@Autowired
 	private AccountRepository repo;
