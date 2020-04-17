@@ -1,0 +1,51 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+	<div th:fragment="content">
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Kontonummer</th>
+							<th scope="col">Verteilungsschl&uuml;ssel</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${items.empty}">
+							<td colspan="3">Es sind keine Partner in dieser Ansicht vorhanden.</td>
+						</tr>
+						<tr th:each="partner : ${items}">
+							<td><a th:href="@{'/account/show/' + ${partner.id}}"><span
+									th:text="${partner.partnerIdent}"></span></a></td>
+							<td><span th:text="${partner.iban}"></span></td>
+							<td><span th:text="${partner.iban}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				<div class="page-title">
+					<h1>Partner</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active">Liste</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

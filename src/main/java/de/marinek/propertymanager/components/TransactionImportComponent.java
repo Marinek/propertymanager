@@ -127,7 +127,11 @@ public class TransactionImportComponent {
 	}
 
 	private CreditorDTO createCreditor(TransactionDTO transaction) {
-		CreditorDTO creditor = partnerRepo.findByIban(transaction.getAccountIBAN());
+		if(transaction.getFromAccountNumber() == null || transaction.getFromAccountNumber().toPlainString().isEmpty()) {
+			return null;
+		}
+		
+		CreditorDTO creditor = partnerRepo.findByIban(transaction.getFromAccountNumber());
 		
 		if(creditor == null) {
 			creditor = new CreditorDTO(transaction.getFromAccountNumber(), transaction.getFromName());
