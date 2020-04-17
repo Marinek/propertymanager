@@ -4,9 +4,10 @@
 
 <body>
 	<div th:fragment="content">
-		<div class="card">
+		<div class="card" th:if="${!accounts.empty}">
 			<div class="card-body">
-				<form action="#" th:action="@{/plan/add}" th:object="${budget}"	method="post">
+				<form action="#" th:action="@{/plan/add}" th:object="${budget}"
+					method="post">
 					<div class="form-group row">
 						<label for="partner" class="col-4 col-form-label">Vertragspartner</label>
 						<div class="col-8">
@@ -16,7 +17,8 @@
 										<i class="fa fa-address-card"></i>
 									</div>
 								</div>
-								<select class="form-control" id="partner" name="partner" th:field="*{partner}">
+								<select class="form-control" id="partner" name="partner"
+									th:field="*{partner}">
 									<option th:each="p : ${partner}" th:value="${p.id}"
 										th:text="${p.partnerIdent}" />
 								</select>
@@ -32,8 +34,10 @@
 										<i class="fa fa-address-card"></i>
 									</div>
 								</div>
-								<select class="form-control" id="bookingAccount" name="bookingAccount" th:field="*{bookingAccount}">
-									<option th:each="p : ${accounts}" th:value="${p.id}" th:text="${p}" />
+								<select class="form-control" id="bookingAccount"
+									name="bookingAccount" th:field="*{bookingAccount}">
+									<option th:each="p : ${accounts}" th:value="${p.id}"
+										th:text="${p}" />
 								</select>
 							</div>
 						</div>
@@ -69,6 +73,13 @@
 					<input type="hidden" th:field="*{periode}">
 				</form>
 			</div>
+		</div>
+
+		<div th:if="${accounts.empty}" class="alert alert-danger" role="alert">
+			<h4 class="alert-heading">Keine Verrechnungsschl&uuml;ssel vorhanden</h4>
+			<p>Es sind alle verf&uuml;gbaren Verrechnungsschl&uuml;ssel der gew&auml;hlten Periode bereits zugewiesen.</p>
+			<hr>
+			<p class="mb-0"><a class="btn btn-link" href="/plan/add/"><i class="fa fa-link"></i>&nbsp;Verrechnungsschl&uuml;ssel hinzugef&uuml;gen</a></p>
 		</div>
 	</div>
 	<div class="breadcrumbs" th:fragment="breadcrumbs">
