@@ -48,7 +48,7 @@ public class BusinessPlanController {
 	public String addBudget(@PathVariable("id") Long id, Model model) {
 		Optional<PeriodDTO> period = repo.findById(id);
 		Iterable<PartnerDTO> partnerList = partnerRepo.findAll();
-		Iterable<BookingAccount> bookingAccounts = bookingAccountRepo.findAll();
+		Iterable<BookingAccount> bookingAccounts = bookingAccountRepo.findByBudgetsPlansNot(period.get());
 		
 		BudgetPlanDTO newBudgetPlan = new BudgetPlanDTO();
 		newBudgetPlan.setPeriode(period.get());

@@ -15,11 +15,13 @@ import de.marinek.propertymanager.domain.accounting.BookingAccount;
 import de.marinek.propertymanager.domain.partner.PartnerDTO;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "budget_plan")
 @Getter
 @Setter
+@ToString
 public class BudgetPlanDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
