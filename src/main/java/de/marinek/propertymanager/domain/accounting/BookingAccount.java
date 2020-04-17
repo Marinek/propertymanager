@@ -26,6 +26,8 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class BookingAccount extends DataTransfereObject {
 	
+	public static final BookingAccount NONE = new BookingAccount("NONE");
+
 	@Column
 	private String name;
 	
@@ -37,6 +39,15 @@ public class BookingAccount extends DataTransfereObject {
 	
 	@OneToMany(mappedBy = "bookingAccount", fetch = FetchType.EAGER)
 	private Set<BudgetPlanDTO> budgetsPlans = new HashSet<BudgetPlanDTO>();
+	
+	public BookingAccount() {
+		this.setDistributionkey(DistributionKey.NONE);
+		this.setType(AccountType.EXPENSE);
+	}
+	
+	private BookingAccount(String name) {
+		this.name = name;
+	}
 	
 	public static BookingAccount createExpense(String name, DistributionKey distributionkey) {
 		BookingAccount newBookingAccount = new BookingAccount();

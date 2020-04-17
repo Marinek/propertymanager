@@ -6,4 +6,6 @@ import de.marinek.propertymanager.domain.plan.PeriodDTO;
 
 public interface BusinessPeriodRepository extends JpaRepository<PeriodDTO, Long> {
 
+	public PeriodDTO findPeriodByYear(Integer year);
+	
 }

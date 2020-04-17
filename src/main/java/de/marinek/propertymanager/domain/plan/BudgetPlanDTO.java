@@ -30,7 +30,7 @@ public class BudgetPlanDTO implements Serializable {
 	private PeriodBudgetId assocId = new PeriodBudgetId();
 	
 	@Column
-	private Double budget;
+	private Double budget = 0.0;
 	
 	@Column(length = 512)
 	private String note;
@@ -41,7 +41,7 @@ public class BudgetPlanDTO implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST )
 	private PartnerDTO partner;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@MapsId("budgetId")
 	private BookingAccount bookingAccount;
 	

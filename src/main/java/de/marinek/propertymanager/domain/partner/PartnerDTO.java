@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import de.marinek.propertymanager.domain.DataTransfereObject;
 import lombok.Getter;
 import lombok.Setter;
+import nl.garvelink.iban.IBAN;
 
 @Getter
 @Setter
@@ -18,10 +19,17 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="partnertype",discriminatorType=DiscriminatorType.STRING)
 public abstract class PartnerDTO extends DataTransfereObject {
-	
-	private String iban;
-	
+
+	private IBAN iban;
+
 	private String name;
-	
+
 	public abstract String getPartnerIdent();	
+
+	public void setIban(String iban) {
+		this.iban = IBAN.valueOf(iban);
+	}
+	public void setIban(IBAN iban) {
+		this.iban = iban;
+	}
 }

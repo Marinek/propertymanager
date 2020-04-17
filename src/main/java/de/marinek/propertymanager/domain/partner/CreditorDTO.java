@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import nl.garvelink.iban.IBAN;
 
 @Entity
 @Table(name = "creditors")
@@ -16,6 +17,15 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorValue(value = "C")
 public class CreditorDTO extends PartnerDTO {
+
+	public CreditorDTO() {
+		
+	}
+	
+	public CreditorDTO(IBAN accountIBAN, String string) {
+		setIban(accountIBAN);
+		setName(string);
+	}
 
 	@Override
 	public String getPartnerIdent() {

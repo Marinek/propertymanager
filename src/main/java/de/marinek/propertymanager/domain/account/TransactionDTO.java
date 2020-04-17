@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -18,6 +19,8 @@ import com.opencsv.bean.CsvDate;
 import de.marinek.propertymanager.components.converter.StringToIBANConverter;
 import de.marinek.propertymanager.components.utils.SHA256Checksum;
 import de.marinek.propertymanager.domain.DataTransfereObject;
+import de.marinek.propertymanager.domain.partner.CreditorDTO;
+import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 import lombok.Getter;
 import lombok.Setter;
 import nl.garvelink.iban.IBAN;
@@ -35,7 +38,6 @@ public class TransactionDTO extends DataTransfereObject {
 	@Transient
 	@CsvCustomBindByName(column = "Auftragskonto", converter = StringToIBANConverter.class)
 	private IBAN accountIBAN;
-	
 	
 	@Column
 	@CsvBindByName(column = "Valutadatum", locale = "de")
@@ -64,6 +66,12 @@ public class TransactionDTO extends DataTransfereObject {
 	
 	@Column(unique = true)
 	private String checksum;
+	
+	@OneToOne
+	private BudgetPlanDTO budgetPlan;
+	
+	@Transient
+	private CreditorDTO creditor;
 	
 	@PrePersist
 	private void calucateChecksum() {

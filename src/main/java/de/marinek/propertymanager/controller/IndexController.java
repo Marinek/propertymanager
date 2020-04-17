@@ -86,7 +86,7 @@ public class IndexController {
 					
 					CreditorDTO partner = new CreditorDTO();
 					
-					partner.setIban("DE89370400440532013000");
+					partner.setIban("DE54426501500003255080");
 					partner.setName("Wasserlieferant");
 					
 					plan.setPartner(partner);
@@ -96,14 +96,14 @@ public class IndexController {
 				{
 					BudgetPlanDTO plan = new BudgetPlanDTO();
 					
-					plan.setBookingAccount(BookingAccount.createExpense("Heizung / Strom", DistributionKey.B_AREA));
+					plan.setBookingAccount(BookingAccount.createExpense("Heizung", DistributionKey.B_AREA));
 					plan.setBudget(4321.0);
 					plan.setExternReference("X4654646");
 					
 					CreditorDTO partner = new CreditorDTO();
 					
-					partner.setIban("DE89370412350123413000");
-					partner.setName("Heizung und Strom GmbH");
+					partner.setIban("DE06506400150235108800");
+					partner.setName("Heizung");
 					
 					plan.setPartner(partner);
 					
@@ -118,7 +118,7 @@ public class IndexController {
 					
 					CreditorDTO partner = new CreditorDTO();
 					
-					partner.setIban("DE8937041212356000");
+					partner.setIban("DE29426501500030000079");
 					partner.setName("Stadt Waltrop");
 					
 					plan.setPartner(partner);
@@ -135,7 +135,7 @@ public class IndexController {
 					
 					OwnerDTO partner = new OwnerDTO();
 					
-					partner.setIban("DE21360501050001234567");
+					partner.setIban("DE21360501050008632127");
 					partner.setName("Mustermann");
 					partner.setSurname("Max");
 					
