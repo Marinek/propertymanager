@@ -18,5 +18,8 @@ public class PeriodBudgetId implements Serializable {
  
     @Column(name = "budget_id")
     private Long budgetId;
+    
+    @Column(name = "partner_id")
+    private Long partnerId;
  
 }

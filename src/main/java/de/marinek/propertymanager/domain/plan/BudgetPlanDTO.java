@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import de.marinek.propertymanager.domain.accounting.BookingAccount;
 import de.marinek.propertymanager.domain.partner.PartnerDTO;
@@ -30,6 +31,7 @@ public class BudgetPlanDTO implements Serializable {
 	private PeriodBudgetId assocId = new PeriodBudgetId();
 	
 	@Column
+	@Min(value = 0, message = "Das Budget darf nicht 0 oder kleiner als 0 sein.")
 	private Double budget = 0.0;
 	
 	@Column(length = 512)
@@ -39,6 +41,7 @@ public class BudgetPlanDTO implements Serializable {
 	private String externReference;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST )
+	@MapsId("partnerId")
 	private PartnerDTO partner;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -49,4 +52,25 @@ public class BudgetPlanDTO implements Serializable {
 	@MapsId("periodId")
 	private PeriodDTO periode;
 	
+	public void setPeriode(PeriodDTO periode) {
+		if(periode != null) {
+			assocId.setPeriodId(periode.getId());
+		}
+		this.periode = periode;
+	}
+	
+	public void setBookingAccount(BookingAccount bookingAccount) {
+		if(bookingAccount != null) {
+			assocId.setBudgetId(bookingAccount.getId());
+		}
+		this.bookingAccount = bookingAccount;
+	}
+	
+	public void setPartner(PartnerDTO partner) {
+		if(partner != null) {
+			assocId.setPartnerId(partner.getId());
+		}
+		this.partner = partner;
+	}
+		
 }

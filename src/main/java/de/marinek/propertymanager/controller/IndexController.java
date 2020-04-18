@@ -1,5 +1,8 @@
 package de.marinek.propertymanager.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +18,7 @@ import de.marinek.propertymanager.domain.plan.DistributionKey;
 import de.marinek.propertymanager.domain.plan.PeriodDTO;
 import de.marinek.propertymanager.domain.property.ApartmentDTO;
 import de.marinek.propertymanager.repository.ApartmentRepository;
+import de.marinek.propertymanager.repository.BookingAccountRepository;
 import de.marinek.propertymanager.repository.BusinessPeriodRepository;
 
 @Controller
@@ -24,6 +28,9 @@ public class IndexController {
 	private BusinessPeriodRepository businessPlanRepo;
 	
 	@Autowired
+	private BookingAccountRepository businessAccountRepo;
+	
+	@Autowired
 	private ApartmentRepository apartmentRepo;
 
 	@GetMapping("/")
@@ -31,6 +38,24 @@ public class IndexController {
 	public String fillIndexModel(ModelAndView model) {
 
 		if(businessPlanRepo.count() == 0) {
+			{
+				;
+				
+				List<BookingAccount> asList = Arrays.asList(
+						BookingAccount.createExpense("Grundbesitzabgaben", DistributionKey.A_PP),
+						BookingAccount.createExpense("Kontoführung", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Schornsteinfeger", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Wartung Heizung", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Instandhaltungsrücklage", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Bargeld", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Gebäudeversicherung", DistributionKey.D_ASSETS),
+						BookingAccount.createExpense("Entwässerung incl. Niederschlagsw. Beb. Fl.", DistributionKey.A_PP),
+						BookingAccount.createExpense("Straßenreinigung", DistributionKey.C_EQUAL)
+						);
+				
+				businessAccountRepo.saveAll(asList);
+			}
+			
 			{
 				
 				ApartmentDTO app = new ApartmentDTO();
@@ -96,7 +121,7 @@ public class IndexController {
 				{
 					BudgetPlanDTO plan = new BudgetPlanDTO();
 					
-					plan.setBookingAccount(BookingAccount.createExpense("Heizung", DistributionKey.B_AREA));
+					plan.setBookingAccount(BookingAccount.createExpense("Heizung / Strom", DistributionKey.B_AREA));
 					plan.setBudget(4321.0);
 					plan.setExternReference("X4654646");
 					
