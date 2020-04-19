@@ -63,6 +63,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -109,7 +115,15 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-maven-plugin</artifactId>
+			<version>3.8.9</version>
+		</dependency>
 	</dependencies>
+
+
 
 	<build>
 		<plugins>
@@ -118,6 +132,46 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.liquibase</groupId>
+					<artifactId>liquibase-maven-plugin</artifactId>
+					<version>${liquibase.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.liquibase.ext</groupId>
+							<artifactId>liquibase-hibernate5</artifactId>
+							<version>3.6</version>
+						</dependency>
+						<dependency>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-starter-data-jpa</artifactId>
+							<version>2.0.0.RELEASE</version>
+						</dependency>
+						<dependency>
+							<groupId>javax.validation</groupId>
+							<artifactId>validation-api</artifactId>
+							<version>2.0.1.Final</version>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<outputChangeLogFile>liquibase-output-changeLog.xml</outputChangeLogFile>					
+						<changeLogFile>src/main/resources/database/migration/master.xml</changeLogFile>
+						<diffChangeLogFile>src/main/resources/database/migration/changelogs/diff_changelog_${version}.new.xml</diffChangeLogFile>
+						<driver>org.h2.Driver</driver>
+						<url>jdbc:h2:~/migration</url>
+						<username>sa</username>
+						<referenceUrl>hibernate:spring:de.marinek.propertymanager.domain?dialect=org.hibernate.dialect.H2Dialect&amp;
+							hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;
+							hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
+
 
 </project>

@@ -1,5 +1,7 @@
 package de.marinek.propertymanager.domain.partner;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import de.marinek.propertymanager.components.converter.StringToIBANConverter;
 import de.marinek.propertymanager.domain.DataTransfereObject;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +23,8 @@ import nl.garvelink.iban.IBAN;
 @DiscriminatorColumn(name="partnertype",discriminatorType=DiscriminatorType.STRING)
 public abstract class PartnerDTO extends DataTransfereObject {
 
+	@Column
+	@Convert(converter = StringToIBANConverter.class)
 	private IBAN iban;
 
 	private String name;

@@ -3,6 +3,8 @@ package de.marinek.propertymanager.domain.account;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -11,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Type;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
@@ -57,6 +61,7 @@ public class TransactionDTO extends DataTransfereObject {
 	private String fromName;
 	
 	@Column
+	@Convert(converter = StringToIBANConverter.class)
 	@CsvCustomBindByName(column = "Kontonummer", converter = StringToIBANConverter.class)
 	private IBAN fromAccountNumber;
 	
