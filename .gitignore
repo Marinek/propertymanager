@@ -29,3 +29,4 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/resources/database/migration/changelogs/diff_changelog_*.new.xml
