@@ -29,9 +29,6 @@ public class ApartmentDTO extends DataTransfereObject{
 	@Column
 	private double area;
 	
-	@Column
-	private int persons;
-
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private OwnerDTO owner;
 }

@@ -60,7 +60,6 @@ public class IndexController {
 				
 				ApartmentDTO app = new ApartmentDTO();
 				app.setName("Oben");
-				app.setPersons(2);
 				app.setShares(286.85);
 				app.setArea(76.0);
 				
@@ -72,11 +71,9 @@ public class IndexController {
 				
 				apartmentRepo.save(app);
 			}
-			{
 				
 				ApartmentDTO app = new ApartmentDTO();
 				app.setName("Unten");
-				app.setPersons(2);
 				app.setShares(361.53);
 				app.setArea(93.0);
 				
@@ -87,7 +84,6 @@ public class IndexController {
 				app.setOwner(owner);
 				
 				apartmentRepo.save(app);
-			}
 			
 			
 			{
@@ -99,6 +95,8 @@ public class IndexController {
 			{
 				PeriodDTO periodDTO = new PeriodDTO();
 				periodDTO.setYear(2020);
+				
+				periodDTO.addAppartment(app, 2);
 				
 				businessPlanRepo.save(periodDTO);
 
@@ -169,15 +167,14 @@ public class IndexController {
 					
 					periodDTO.addBudgetPlan(plan);
 					
-					ApartmentDTO app = new ApartmentDTO();
-					app.setName("Mitte");
-					app.setPersons(1);
-					app.setShares(351.62);
-					app.setArea(93.0);
+					ApartmentDTO app2 = new ApartmentDTO();
+					app2.setName("Mitte");
+					app2.setShares(351.62);
+					app2.setArea(93.0);
 					
-					app.setOwner(partner);
+					app2.setOwner(partner);
 					
-					apartmentRepo.save(app);
+					apartmentRepo.save(app2);
 				}
 			}
 			{

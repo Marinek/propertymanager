@@ -91,6 +91,43 @@
 				</table>
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-sm-4">
+						<h4 class="card-title mb-0">Wohnungen</h4>
+						<div class="small text-muted" th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">01.01.20xx - 31.12.20xx</div>
+					</div>
+
+					<div class="col-sm-8 hidden-sm-down">
+						<a th:href="'/plan/add/apartment/' + ${period.id}" class="btn btn-outline-primary float-right"><i
+							class="fa fa-magic"></i>&nbsp; Wohnung hinzuf&uuml;gen</a>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Wohnung</th>
+							<th scope="col">Daten</th>
+							<th scope="col">Anzahl Personen</th>
+						</tr>
+					</thead>
+					<tr th:if="${period.bookingAccounts.empty}">
+						<td colspan="5">Es sind keine zugeordneten Wohnungen vorhanden.</td>
+					</tr>
+					<tr
+						th:each="items : ${period.appartments}">
+						<td><span th:text="${items.apartment.name}"></span></td>
+						<td><span th:text="${items.apartment.area}"></span> m&sup2;<br /><span th:text="${items.apartment.shares}"></span> / 1000.0</td>
+							<td><span th:text="${items.persons}"></span></td>
+					</tr>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 	<div class="breadcrumbs" th:fragment="breadcrumbs">
 		<div class="col-sm-4">

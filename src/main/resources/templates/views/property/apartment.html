@@ -14,7 +14,6 @@
 							<th scope="col">Eigent&uuml;mer</th>
 							<th scope="col">Anteile</th>
 							<th scope="col">m&sup2;	 Fl&auml;che</th>
-							<th scope="col">#Personen</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -26,7 +25,6 @@
 							<td><span  th:text="${a.owner.surname + ' ' + a.owner.name}"></span></td>
 							<td><span  th:text="${a.shares}"></span>&nbsp;/&nbsp;1.000</td>
 							<td><span  th:text="${a.area}"></span>&nbsp;m&sup2;	</td>
-							<td><span  th:text="${a.persons}"></span></td>
 						</tr>
 					</tbody>
 				</table>
