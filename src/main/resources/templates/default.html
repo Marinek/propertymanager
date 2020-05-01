@@ -97,24 +97,24 @@
 						th:each="period : ${periods}"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"
 						aria-haspopup="true"
-						th:attr="aria-expanded=${#httpServletRequest.requestURL.toString().contains('plan/show/' + period.id) ? 'true' : 'false'}">
+						th:attr="aria-expanded=${#httpServletRequest.requestURL.toString().contains('show/' + period.id) ? 'true' : 'false'}">
 							<i class="menu-icon fa fa-glass"></i><span
 							th:text="${period.year}">2020</span>
 					</a>
 						<ul class="sub-menu children dropdown-menu"
-							th:classappend="${(#httpServletRequest.requestURL.toString().contains('plan/show/' + period.id))} ? 'show'">
+							th:classappend="${(#httpServletRequest.requestURL.toString().contains('show/' + period.id))} ? 'show'">
 							<li><i class="menu-icon fa fa-sign-in"></i><a
-								th:href="@{'/plan/show/' + ${period.id}}">Wirtschaftsplan</a></li>
+								th:href="@{'/plan/show/' + ${period.id}}">Einnahmen und
+									Ausgaben</a></li>
 							<li><i class="menu-icon fa fa-sign-in"></i><a
-								href="page-register.html">Einnahmen und Ausgaben</a></li>
+								th:href="@{'/invoice/show/' + ${period.id}}">Abrechnungen</a></li>
 							<li><i class="menu-icon fa fa-paper-plane"></i><a
 								href="pages-forget.html">Forget Pass</a></li>
 						</ul></li>
 
-					<li class="menu-item"><a href="/import"
-						aria-haspopup="true" aria-expanded="false">
-							<i class="menu-icon fa fa-folder-open-o"></i>Neue
-							Abrechnungsperiode
+					<li class="menu-item"><a href="/import" aria-haspopup="true"
+						aria-expanded="false"> <i
+							class="menu-icon fa fa-folder-open-o"></i>Neue Abrechnungsperiode
 					</a></li>
 
 				</ul>

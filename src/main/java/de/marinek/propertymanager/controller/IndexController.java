@@ -94,7 +94,7 @@ public class IndexController {
 			{
 				PeriodDTO periodDTO = new PeriodDTO();
 				periodDTO.setYear(2019);
-
+				periodDTO.addAppartment(app, 2);
 				businessPlanRepo.save(periodDTO);
 			}
 			{
@@ -190,6 +190,9 @@ public class IndexController {
 			{
 				PeriodDTO periodDTO = new PeriodDTO();
 				periodDTO.setYear(2017);
+				
+				periodDTO.addAppartment(app, 2);
+				
 				businessPlanRepo.save(periodDTO);
 
 			}

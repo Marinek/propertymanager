@@ -1,6 +1,8 @@
 package de.marinek.propertymanager.domain.plan;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -8,9 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
+import de.marinek.propertymanager.domain.account.TransactionDTO;
 import de.marinek.propertymanager.domain.accounting.BookingAccount;
 import de.marinek.propertymanager.domain.partner.PartnerDTO;
 import lombok.Getter;
@@ -50,6 +54,19 @@ public class BudgetPlanDTO implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("periodId")
 	private PeriodDTO periode;
+	
+	@OneToMany(mappedBy = "budgetPlan")
+	private Set<TransactionDTO> transactions = new HashSet<TransactionDTO>();
+	
+	public Double getSum() {
+		Double sum = 0.0;
+		
+		for(TransactionDTO transaction : transactions) {
+			sum += transaction.getValue();
+		}
+		
+		return sum;
+	}
 	
 	public void setPeriode(PeriodDTO periode) {
 		if(periode != null) {
