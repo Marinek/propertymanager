@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum DistributionKey {
 	
-	NONE("XX", "Muss noch festgelegt werden!"),			
+	NONE("X", "Muss noch festgelegt werden!"),			
 	A_PP("A", "25 % der Gesamtsumme geteilt durch 3 Wohneinheiten\r\n" + 
 			"75 % der Gesamtsumme geteilt durch Anzahl der Personen"),
 	B_AREA("B", "Gesamtsumme geteilt durch 3 Wohneinheiten"),

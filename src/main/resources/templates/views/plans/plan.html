@@ -33,7 +33,7 @@
 						<td colspan="5">Es sind keine Budgetpl&auml;ne vorhanden.</td>
 					</tr>
 					<tr
-						th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'EXPENSE']}">
+						th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() != 'INCOME']}">
 						<td><span th:text="${account.bookingAccount.name}"></span></td>
 						<td><span th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>

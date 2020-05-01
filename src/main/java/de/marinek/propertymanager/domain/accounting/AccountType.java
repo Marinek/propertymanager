@@ -2,7 +2,7 @@ package de.marinek.propertymanager.domain.accounting;
 
 public enum AccountType {
 	
-	INCOME ("Einnahmen"), EXPENSE ("Ausgaben");
+	INCOME ("Einnahmen"), EXPENSE ("Ausgaben"), DEFAULT("N/A");
 	
 	private String name;
 	

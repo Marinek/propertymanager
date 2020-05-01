@@ -84,4 +84,9 @@ public class PeriodDTO extends DataTransfereObject {
 		a.setPeriode(this);
 		this.appartments.add(a);
 	}
+	
+	@Override
+	public String toString() {
+		return "" + this.year;
+	}
 }

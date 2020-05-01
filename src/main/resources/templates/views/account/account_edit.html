@@ -5,7 +5,8 @@
 <body>
 	<div th:fragment="content">
 
-		<form action="#" th:action="@{/account/edit}" th:object="${account}" method="post">
+		<form action="#" th:action="@{/account/edit}" th:object="${account}"
+			method="post">
 			<div class="card">
 				<div class="card-header">
 					<strong>Horizontal</strong>
@@ -45,10 +46,21 @@
 				</div>
 			</div>
 		</form>
-		
-		<div
-				th:replace="views/account/account_transaction.html :: transaction(transactions=${account.transactions})">
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link  active show" id="nav-home-tab"
+					th:href="@{''(filter=ALL)}" role="tab" aria-controls="nav-home"
+					aria-selected="false">Alle</a> <a class="nav-item nav-link"
+					id="nav-profile-tab" th:href="@{''(filter=OPEN)}" role="tab"
+					aria-controls="nav-profile" aria-selected="false">Offene</a> <a
+					class="nav-item nav-link" id="nav-contact-tab"
+					th:href="@{''(filter=CLOSED)}" role="tab"
+					aria-controls="nav-contact" aria-selected="true">Gebuchte</a>
 			</div>
+		</nav>
+		<div
+			th:replace="views/account/account_transaction.html :: transaction(transactions=${account.transactions})">
+		</div>
 	</div>
 	<div class="breadcrumbs" th:fragment="breadcrumbs">
 		<div class="col-sm-4">

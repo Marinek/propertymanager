@@ -2,7 +2,6 @@ package de.marinek.propertymanager.domain.plan;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -40,11 +39,11 @@ public class BudgetPlanDTO implements Serializable {
 	@Column
 	private String externReference;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST )
+	@ManyToOne
 	@MapsId("partnerId")
 	private PartnerDTO partner;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("budgetId")
 	private BookingAccount bookingAccount;
 	

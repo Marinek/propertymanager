@@ -20,12 +20,17 @@ import de.marinek.propertymanager.domain.property.ApartmentDTO;
 import de.marinek.propertymanager.repository.ApartmentRepository;
 import de.marinek.propertymanager.repository.BookingAccountRepository;
 import de.marinek.propertymanager.repository.BusinessPeriodRepository;
+import de.marinek.propertymanager.repository.BusinessPlanRepository;
 
 @Controller
 public class IndexController {
 
 	@Autowired
 	private BusinessPeriodRepository businessPlanRepo;
+	
+	@Autowired
+	private BusinessPlanRepository businessplanRepo;
+	
 	
 	@Autowired
 	private BookingAccountRepository businessAccountRepo;
@@ -115,6 +120,8 @@ public class IndexController {
 					plan.setPartner(partner);
 
 					periodDTO.addBudgetPlan(plan);
+					
+					businessplanRepo.save(plan);
 				}
 				{
 					BudgetPlanDTO plan = new BudgetPlanDTO();
@@ -131,6 +138,7 @@ public class IndexController {
 					plan.setPartner(partner);
 					
 					periodDTO.addBudgetPlan(plan);
+					businessplanRepo.save(plan);
 				}
 				{
 					BudgetPlanDTO plan = new BudgetPlanDTO();
@@ -148,6 +156,7 @@ public class IndexController {
 					plan.setNote("Neue Mülltonnen angeschafft.");
 					
 					periodDTO.addBudgetPlan(plan);
+					businessplanRepo.save(plan);
 				}
 				{
 					BudgetPlanDTO plan = new BudgetPlanDTO();
@@ -175,6 +184,7 @@ public class IndexController {
 					app2.setOwner(partner);
 					
 					apartmentRepo.save(app2);
+					businessplanRepo.save(plan);
 				}
 			}
 			{

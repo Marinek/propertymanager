@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,8 +12,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.Type;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvCustomBindByName;
@@ -27,6 +24,7 @@ import de.marinek.propertymanager.domain.partner.CreditorDTO;
 import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import nl.garvelink.iban.IBAN;
 
 @Entity
@@ -34,6 +32,7 @@ import nl.garvelink.iban.IBAN;
 @Setter
 @Table(name = "transactions")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@ToString
 public class TransactionDTO extends DataTransfereObject {
 
 	@ManyToOne

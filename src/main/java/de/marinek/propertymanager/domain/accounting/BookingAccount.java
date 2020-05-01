@@ -26,8 +26,6 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class BookingAccount extends DataTransfereObject {
 	
-	public static final BookingAccount NONE = new BookingAccount("NONE");
-
 	@Column
 	private String name;
 	
@@ -43,10 +41,6 @@ public class BookingAccount extends DataTransfereObject {
 	public BookingAccount() {
 		this.setDistributionkey(DistributionKey.NONE);
 		this.setType(AccountType.EXPENSE);
-	}
-	
-	private BookingAccount(String name) {
-		this.name = name;
 	}
 	
 	public static BookingAccount createExpense(String name, DistributionKey distributionkey) {
@@ -71,6 +65,6 @@ public class BookingAccount extends DataTransfereObject {
 	
 	@Override
 	public String toString() {
-		return type.getName() + ": " + this.name  + " (" + distributionkey.getName() + ")";
+		return type.getName() + ": " + this.name  + " (" + distributionkey.getName() + " - " + distributionkey.getDescription() + ")";
 	}
 }

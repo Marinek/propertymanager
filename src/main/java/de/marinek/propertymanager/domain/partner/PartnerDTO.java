@@ -13,6 +13,7 @@ import de.marinek.propertymanager.components.converter.StringToIBANConverter;
 import de.marinek.propertymanager.domain.DataTransfereObject;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import nl.garvelink.iban.IBAN;
 
 @Getter
@@ -21,6 +22,7 @@ import nl.garvelink.iban.IBAN;
 @Table(name = "partners")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="partnertype",discriminatorType=DiscriminatorType.STRING)
+@ToString
 public abstract class PartnerDTO extends DataTransfereObject {
 
 	@Column
