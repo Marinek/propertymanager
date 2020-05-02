@@ -1,0 +1,87 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<body>
+	<div th:fragment="content">
+
+		<div class="card" th:if="${!apartments.empty}">
+			<div class="card-body">
+				<form action="#" th:action="@{/plan/add/apartment/}" th:object="${apartmentperiode}"
+					method="post">
+					<div th:if="${#fields.hasErrors('*')}"
+						class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+						<span class="badge badge-pill badge-danger">Fehler</span>
+						<ul>
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">XX</li>
+
+						</ul>
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times; </span>
+						</button>
+					</div>
+					<div class="form-group row">
+						<label for="partner" class="col-4 col-form-label">Wohnung</label>
+						<div class="col-8">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-address-card"></i>
+									</div>
+								</div>
+								<select class="form-control" id="apartment" name="apartment"
+									th:field="*{apartment}">
+									<option th:each="a : ${apartments}" th:value="${a.id}"
+										th:text="${a.name}" />
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="externReference" class="col-4 col-form-label">Anzahl Personen</label>
+						<div class="col-8">
+							<input id="persons" name="persons"
+								placeholder="Kinder und Erwachsene dauerhaft in der Wohnung lebend."
+								type="text" class="form-control">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="offset-4 col-8">
+							<button name="submit" type="submit" class="btn btn-primary">Speichern</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{periode}">
+				</form>
+			</div>
+		</div>
+
+		<div th:if="${apartments.empty}" class="alert alert-danger" role="alert">
+			<h4 class="alert-heading">Keine Wohnungen vorhanden</h4>
+			<p>Es sind alle verf&uuml;gbaren Wohnungen der
+				gew&auml;hlten Periode bereits zugewiesen.</p>
+			<hr>
+			<p class="mb-0">
+				<a class="btn btn-link" href="/property/add/"><i class="fa fa-link"></i>&nbsp;Wohnung
+					hinzugef&uuml;gen</a>
+			</p>
+		</div>
+	</div>
+	<div class="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				<div class="page-title">
+					<h1>Wirtschaftsplan: Wohnung zur Periode hinzuf&uuml;gen</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active" th:text="${periode.year}"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

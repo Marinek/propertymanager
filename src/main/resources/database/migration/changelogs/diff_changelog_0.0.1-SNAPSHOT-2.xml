@@ -1,0 +1,49 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Marcinek (generated)" id="1587330400830-1">
+        <dropUniqueConstraint constraintName="UC_ACCOUNTSIBAN_COL" tableName="accounts"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587330400830-2">
+        <addUniqueConstraint columnNames="iban" constraintName="UC_ACCOUNTSIBAN_COL" tableName="accounts"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587330400830-3">
+        <dropUniqueConstraint constraintName="UC_TRANSACTIONSCHECKSUM_COL" tableName="transactions"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587330400830-4">
+        <addUniqueConstraint columnNames="checksum" constraintName="UC_TRANSACTIONSCHECKSUM_COL" tableName="transactions"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-5">
+        <createTable tableName="apartment_period">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="apartment_periodPK"/>
+            </column>
+            <column name="persons" type="INT"/>
+            <column name="apartment_id" type="BIGINT"/>
+            <column name="periode_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-6">
+        <addUniqueConstraint columnNames="apartment_id, periode_id" constraintName="UK9dym09yg35sc94kvwmpdd5fg9" tableName="apartment_period"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-7">
+        <addForeignKeyConstraint baseColumnNames="periode_id" baseTableName="apartment_period" constraintName="FKc1vkt8s7hypxsbn8x7gaypttx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="periods" validate="true"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-8">
+        <addForeignKeyConstraint baseColumnNames="apartment_id" baseTableName="apartment_period" constraintName="FKd2lfw6uypr55809i51d7bj4b6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="apartments" validate="true"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-9">
+        <dropColumn columnName="PERSONS" tableName="APARTMENTS"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-1">
+        <dropUniqueConstraint constraintName="UC_ACCOUNTSIBAN_COL" tableName="accounts"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-2">
+        <addUniqueConstraint columnNames="iban" constraintName="UC_ACCOUNTSIBAN_COL" tableName="accounts"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-3">
+        <dropUniqueConstraint constraintName="UC_TRANSACTIONSCHECKSUM_COL" tableName="transactions"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1587919056712-4">
+        <addUniqueConstraint columnNames="checksum" constraintName="UC_TRANSACTIONSCHECKSUM_COL" tableName="transactions"/>
+    </changeSet>
+</databaseChangeLog>

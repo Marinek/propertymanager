@@ -1,0 +1,84 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+	<div th:fragment="content">
+
+		<form action="#" th:action="@{/account/edit}" th:object="${account}"
+			method="post">
+			<div class="card">
+				<div class="card-header">
+					<strong>Horizontal</strong>
+				</div>
+				<div class="card-body">
+					<div class="row form-group">
+						<div class="col col-md-3">
+							<label for="iban" class=" form-control-label">IBAN</label>
+						</div>
+						<div class="col-12 col-md-9">
+							<input type="text" th:field="*{iban}" placeholder="IBAN..."
+								class="form-control"><span class="help-block">Bitte
+								IBAN des Kontos eingeben.</span>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col col-md-3">
+							<label for="name" class=" form-control-label">Name /
+								Beschreibung</label>
+						</div>
+						<div class="col-12 col-md-9">
+							<input type="text" th:field="*{name}"
+								placeholder="Beschreibung..." class="form-control"><span
+								class="help-block">Eine kurze Beschreibung oder ein Name
+								des Kontos</span>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{id}">
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary btn-sm">
+						<i class="fa fa-dot-circle-o"></i> Speichern
+					</button>
+					<button type="reset" class="btn btn-danger btn-sm">
+						<i class="fa fa-ban"></i> Reset
+					</button>
+				</div>
+			</div>
+		</form>
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link  active show" id="nav-home-tab"
+					th:href="@{''(filter=ALL)}" role="tab" aria-controls="nav-home"
+					aria-selected="false">Alle</a> <a class="nav-item nav-link"
+					id="nav-profile-tab" th:href="@{''(filter=OPEN)}" role="tab"
+					aria-controls="nav-profile" aria-selected="false">Offene</a> <a
+					class="nav-item nav-link" id="nav-contact-tab"
+					th:href="@{''(filter=CLOSED)}" role="tab"
+					aria-controls="nav-contact" aria-selected="true">Gebuchte</a>
+			</div>
+		</nav>
+		<div
+			th:replace="views/account/account_transaction.html :: transaction(transactions=${account.transactions})">
+		</div>
+	</div>
+	<div class="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				<div class="page-title">
+					<h1>Konto</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active">Hinzuf&uuml;gen</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

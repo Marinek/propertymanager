@@ -1,0 +1,119 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+	<div th:fragment="content">
+		<div class="card">
+
+			<div class="card-header">
+				<ul  class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+					<li th:each="app,app_iter : ${periode.appartments}" class="nav-item"><a class="nav-link active show"
+						id="pills-home-tab" data-toggle="pill" th:href="@{''(index=${app_iter.index})}"
+						role="tab" aria-controls="pills-home" aria-selected="true" th:text="${app.apartment.name}">Home</a>
+					</li>
+				</ul>
+			</div>
+			<div class="card-body">
+				<div class="row mb-4">
+					<div class="col-sm-4">
+						<h6 class="mb-3">Max Mustermann</h6>
+						<div>
+							<strong></strong>
+						</div>
+						<div>Musterstrasse 123</div>
+						<div>12345 musterstadt</div>
+						<div>Email: max.mustermann@rub.de</div>
+					</div>
+
+					<div class="col-sm-4">
+					</div>
+
+					<div class="col-sm-4">
+						<div>Wirtschaftsjahr</div>
+						<div>
+							<strong>01.01.<span th:text="${periode.year}"></span> - 31.12.<span th:text="${periode.year}"></span></strong>
+						</div>
+						<div>Anzahl Personen: <span th:text="${periode.appartments[indexi].persons}"></span>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="table-responsive-sm">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th align="center">#</th>
+								<th align="left">Kostenart</th>
+								<th align="center">Schl&uuml;ssel</th>
+								<th align="right">Gesamtkosten</th>
+								<th align="right">Eigener Anteil</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="a,iter : ${periode.bookingAccounts.?[bookingAccount.type.toString() != 'INCOME']}">
+								<td align="center" th:text="${iter.index + 1}">1</td>
+								<td class="left"  th:text="${a.bookingAccount.name}">Origin License</td>
+								<td align="center"  th:text="${a.bookingAccount.distributionkey.name}">Origin License</td>
+								<td align="right"><span th:text="${#numbers.formatDecimal(a.sum, 1, 'DEFAULT', 2, 'DEFAULT')}"></span> &euro;</td>
+								<td align="right">$999,00</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-sm-5">Lorem ipsum dolor sit amet,
+						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+						nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate
+						velit esse cillum dolore eu fugiat nulla pariatur.</div>
+					<div class="col-lg-4 col-sm-5 ml-auto">
+						<table class="table table-clear">
+							<tbody>
+								<tr>
+									<td class="left"><strong>Subtotal</strong></td>
+									<td class="right">$8.497,00</td>
+								</tr>
+								<tr>
+									<td class="left"><strong>Discount (20%)</strong></td>
+									<td class="right">$1,699,40</td>
+								</tr>
+								<tr>
+									<td class="left"><strong>VAT (10%)</strong></td>
+									<td class="right">$679,76</td>
+								</tr>
+								<tr>
+									<td class="left"><strong>Total</strong></td>
+									<td class="right"><strong>$7.477,36</strong></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				<div class="page-title">
+					<h1>Abrechnung</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active" th:text="${'Wirtschaftsjahr ' + periode.year}"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

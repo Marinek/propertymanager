@@ -1,0 +1,53 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+	<div th:fragment="content">
+		
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Bezeichnung</th>
+							<th scope="col">Eigent&uuml;mer</th>
+							<th scope="col">Anteile</th>
+							<th scope="col">m&sup2;	 Fl&auml;che</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${items.empty}">
+							<td colspan="4">Es sind keine Wohnungen vorhanden.</td>
+						</tr>
+						<tr th:each="a : ${items}">
+							<td><span  th:text="${a.name}"></span></td>
+							<td><span  th:text="${a.owner.surname + ' ' + a.owner.name}"></span></td>
+							<td><span  th:text="${a.shares}"></span>&nbsp;/&nbsp;1.000</td>
+							<td><span  th:text="${a.area}"></span>&nbsp;m&sup2;	</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="col-sm-4">
+			<div class="page-header float-left">
+				<div class="page-title">
+					<h1>Wohnungen</h1>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="page-header float-right">
+				<div class="page-title">
+					<ol class="breadcrumb text-right">
+						<li class="active">Liste</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
