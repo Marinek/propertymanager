@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,21 +56,18 @@ public class TransactionImportComponent {
 	
 	private Logger logger = LoggerFactory.getLogger(TransactionImportComponent.class);
 
-	private BookingAccount defaultBookingAccount;
-	
-	@PostConstruct
-	private void init() {
+	private BookingAccount getDefaultBookingAccount() {
 		List<BookingAccount> defaultBookingAccounts = bookingAccountRepo.findByType(AccountType.DEFAULT);
 		
 		if(defaultBookingAccounts.size() == 0) {
-			BookingAccount bookingAccount = new BookingAccount();
+			BookingAccount defaultBookingAccount = new BookingAccount();
 			
-			bookingAccount.setType(AccountType.DEFAULT);
-			bookingAccount.setName("Pseudokonto");
+			defaultBookingAccount.setType(AccountType.DEFAULT);
+			defaultBookingAccount.setName("Pseudokonto");
 			
-			defaultBookingAccount = bookingAccountRepo.save(bookingAccount);
+			return bookingAccountRepo.save(defaultBookingAccount);
 		} else {
-			defaultBookingAccount = defaultBookingAccounts.get(0);
+			return defaultBookingAccounts.get(0);
 		}
 	}
 
@@ -149,7 +144,7 @@ public class TransactionImportComponent {
 			findByPeriodAndCreditor = new BudgetPlanDTO();
 			findByPeriodAndCreditor.setPartner(creditor);
 			findByPeriodAndCreditor.setNote(transaction.getUsage());
-			findByPeriodAndCreditor.setBookingAccount(defaultBookingAccount);
+			findByPeriodAndCreditor.setBookingAccount(getDefaultBookingAccount());
 			findByPeriodAndCreditor.setPeriode(period);
 			
 			logger.info("Created new BudgetPlan: " + findByPeriodAndCreditor);

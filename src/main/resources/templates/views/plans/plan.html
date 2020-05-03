@@ -34,7 +34,7 @@
 					</tr>
 					<tr
 						th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() != 'INCOME']}">
-						<td><span th:text="${account.bookingAccount.name}"></span></td>
+						<td><a th:href="@{/plan/edit/budget/{id}(id=${account.id})}"><span th:text="${account.bookingAccount.name}"></span></a></td>
 						<td><span th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>
 						<td class="text-right text-nowrap"><span
@@ -77,14 +77,13 @@
 					</tr>
 					<tr
 						th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'INCOME']}">
-						<td><span th:text="${account.bookingAccount.name}"></span></td>
-						<td><span th:text="${account.partner.surname}"></span>&nbsp;<span
-							th:text="${account.partner.name}"></span></td>
+						<td><a th:href="@{/plan/edit/budget/{id}(id=${account.id})}"><span th:text="${account.bookingAccount.name}"></span></a></td>
+						<td><span th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>
 						<td class="text-right text-nowrap"><span
 							th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span>
 							&euro;</td>
-						<td><span th:text="${account.note}"></span></td>
+						<td class="text-right"><span th:text="${account.note}"></span></td>
 					</tr>
 					<tbody>
 					</tbody>

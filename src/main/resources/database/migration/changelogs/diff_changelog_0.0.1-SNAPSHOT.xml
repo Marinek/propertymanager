@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="Marcinek (generated)" id="1587330148024-1">
+    <changeSet author="Marcinek (generated)" id="1588464292414-1">
         <createTable tableName="accounts">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="accountsPK"/>
@@ -11,19 +11,28 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-2">
+    <changeSet author="Marcinek (generated)" id="1588464292414-2">
+        <createTable tableName="apartment_period">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="apartment_periodPK"/>
+            </column>
+            <column name="persons" type="INT"/>
+            <column name="apartment_id" type="BIGINT"/>
+            <column name="periode_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1588464292414-3">
         <createTable tableName="apartments">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="apartmentsPK"/>
             </column>
             <column name="area" type="DOUBLE"/>
             <column name="name" type="VARCHAR(255)"/>
-            <column name="persons" type="INT"/>
             <column name="shares" type="DOUBLE"/>
             <column name="owner_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-3">
+    <changeSet author="Marcinek (generated)" id="1588464292414-4">
         <createTable tableName="bookingaccounts">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="bookingaccountsPK"/>
@@ -33,30 +42,27 @@
             <column name="type" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-4">
+    <changeSet author="Marcinek (generated)" id="1588464292414-5">
         <createTable tableName="budget_plan">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="budget_planPK"/>
+            </column>
             <column name="budget" type="DOUBLE"/>
             <column name="extern_reference" type="VARCHAR(255)"/>
             <column name="note" type="VARCHAR(512)"/>
-            <column name="booking_account_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="budget_planPK"/>
-            </column>
-            <column name="partner_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="budget_planPK"/>
-            </column>
-            <column name="periode_id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="budget_planPK"/>
-            </column>
+            <column name="booking_account_id" type="BIGINT"/>
+            <column name="partner_id" type="BIGINT"/>
+            <column name="periode_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-5">
+    <changeSet author="Marcinek (generated)" id="1588464292414-6">
         <createTable tableName="creditors">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="creditorsPK"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-6">
+    <changeSet author="Marcinek (generated)" id="1588464292414-7">
         <createTable tableName="owners">
             <column name="surname" type="VARCHAR(255)"/>
             <column name="id" type="BIGINT">
@@ -64,7 +70,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-7">
+    <changeSet author="Marcinek (generated)" id="1588464292414-8">
         <createTable tableName="partners">
             <column name="partnertype" type="VARCHAR(31)">
                 <constraints nullable="false"/>
@@ -76,7 +82,7 @@
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-8">
+    <changeSet author="Marcinek (generated)" id="1588464292414-9">
         <createTable tableName="periods">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="periodsPK"/>
@@ -85,7 +91,7 @@
             <column name="year" type="INT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-9">
+    <changeSet author="Marcinek (generated)" id="1588464292414-10">
         <createTable tableName="transactions">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="transactionsPK"/>
@@ -98,39 +104,46 @@
             <column name="usage" type="VARCHAR(512)"/>
             <column name="value" type="DOUBLE"/>
             <column name="account_id" type="BIGINT"/>
-            <column name="budget_plan_booking_account_id" type="BIGINT"/>
-            <column name="budget_plan_partner_id" type="BIGINT"/>
-            <column name="budget_plan_periode_id" type="BIGINT"/>
+            <column name="budget_plan_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-10">
+    <changeSet author="Marcinek (generated)" id="1588464292414-11">
         <addUniqueConstraint columnNames="iban" constraintName="UC_ACCOUNTSIBAN_COL" tableName="accounts"/>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-11">
+    <changeSet author="Marcinek (generated)" id="1588464292414-12">
         <addUniqueConstraint columnNames="checksum" constraintName="UC_TRANSACTIONSCHECKSUM_COL" tableName="transactions"/>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-12">
+    <changeSet author="Marcinek (generated)" id="1588464292414-13">
+        <addUniqueConstraint columnNames="apartment_id, periode_id" constraintName="UK9dym09yg35sc94kvwmpdd5fg9" tableName="apartment_period"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1588464292414-14">
         <addForeignKeyConstraint baseColumnNames="account_id" baseTableName="transactions" constraintName="FK20w7wsg13u9srbq3bd7chfxdh" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="accounts" validate="true"/>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-13">
+    <changeSet author="Marcinek (generated)" id="1588464292414-15">
         <addForeignKeyConstraint baseColumnNames="id" baseTableName="creditors" constraintName="FK2m6ak5pp5wefngct9tei009rf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="partners" validate="true"/>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-14">
-        <addForeignKeyConstraint baseColumnNames="budget_plan_booking_account_id,budget_plan_partner_id,budget_plan_periode_id" baseTableName="transactions" constraintName="FK3spd1wocsd2h05rtykg42tb0e" deferrable="false" initiallyDeferred="false" referencedColumnNames="booking_account_id,partner_id,periode_id" referencedTableName="budget_plan" validate="true"/>
-    </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-15">
+    <changeSet author="Marcinek (generated)" id="1588464292414-16">
         <addForeignKeyConstraint baseColumnNames="id" baseTableName="owners" constraintName="FK6j781t4ybk4baggo2d7hjr7at" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="partners" validate="true"/>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-16">
+    <changeSet author="Marcinek (generated)" id="1588464292414-17">
+        <addForeignKeyConstraint baseColumnNames="periode_id" baseTableName="apartment_period" constraintName="FKc1vkt8s7hypxsbn8x7gaypttx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="periods" validate="true"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1588464292414-18">
+        <addForeignKeyConstraint baseColumnNames="apartment_id" baseTableName="apartment_period" constraintName="FKd2lfw6uypr55809i51d7bj4b6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="apartments" validate="true"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1588464292414-19">
         <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="apartments" constraintName="FKey1vcx05l7pcneim4vty06ltd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="owners" validate="true"/>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-17">
+    <changeSet author="Marcinek (generated)" id="1588464292414-20">
         <addForeignKeyConstraint baseColumnNames="periode_id" baseTableName="budget_plan" constraintName="FKg57rfdhguj72rg39g142co8m7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="periods" validate="true"/>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-18">
+    <changeSet author="Marcinek (generated)" id="1588464292414-21">
         <addForeignKeyConstraint baseColumnNames="partner_id" baseTableName="budget_plan" constraintName="FKkiqblr26hdydws7mlmx2dc0nb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="partners" validate="true"/>
     </changeSet>
-    <changeSet author="Marcinek (generated)" id="1587330148024-19">
+    <changeSet author="Marcinek (generated)" id="1588464292414-22">
         <addForeignKeyConstraint baseColumnNames="booking_account_id" baseTableName="budget_plan" constraintName="FKofr4hbjqimvx09b3et6miumf3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bookingaccounts" validate="true"/>
+    </changeSet>
+    <changeSet author="Marcinek (generated)" id="1588464292414-23">
+        <addForeignKeyConstraint baseColumnNames="budget_plan_id" baseTableName="transactions" constraintName="FKph7k4iaaovd6y1madue4x4sus" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="budget_plan" validate="true"/>
     </changeSet>
 </databaseChangeLog>

@@ -1,20 +1,14 @@
 package de.marinek.propertymanager.domain.accounting;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import de.marinek.propertymanager.domain.DataTransfereObject;
-import de.marinek.propertymanager.domain.plan.BudgetPlanDTO;
 import de.marinek.propertymanager.domain.plan.DistributionKey;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,9 +28,6 @@ public class BookingAccount extends DataTransfereObject {
 	
 	@Enumerated(EnumType.STRING)
 	private DistributionKey distributionkey;
-	
-	@OneToMany(mappedBy = "bookingAccount", fetch = FetchType.EAGER)
-	private Set<BudgetPlanDTO> budgetsPlans = new HashSet<BudgetPlanDTO>();
 	
 	public BookingAccount() {
 		this.setDistributionkey(DistributionKey.NONE);

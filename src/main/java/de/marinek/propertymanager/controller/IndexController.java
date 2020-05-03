@@ -47,15 +47,17 @@ public class IndexController {
 				;
 				
 				List<BookingAccount> asList = Arrays.asList(
-						BookingAccount.createExpense("Grundbesitzabgaben", DistributionKey.A_PP),
-						BookingAccount.createExpense("Kontoführung", DistributionKey.C_EQUAL),
-						BookingAccount.createExpense("Schornsteinfeger", DistributionKey.C_EQUAL),
-						BookingAccount.createExpense("Wartung Heizung", DistributionKey.C_EQUAL),
-						BookingAccount.createExpense("Instandhaltungsrücklage", DistributionKey.C_EQUAL),
-						BookingAccount.createExpense("Bargeld", DistributionKey.C_EQUAL),
-						BookingAccount.createExpense("Gebäudeversicherung", DistributionKey.D_ASSETS),
+						BookingAccount.createExpense("Wasser", DistributionKey.A_PP),
+						BookingAccount.createExpense("Heizung / Strom", DistributionKey.B_AREA),
 						BookingAccount.createExpense("Entwässerung incl. Niederschlagsw. Beb. Fl.", DistributionKey.A_PP),
-						BookingAccount.createExpense("Straßenreinigung", DistributionKey.C_EQUAL)
+						BookingAccount.createExpense("Müllabfuhr", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Straßenreinigung", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Gebäudeversicherung", DistributionKey.D_ASSETS),
+						BookingAccount.createExpense("Kontoführung", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Wartung Heizung", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Schornsteinfeger", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Instandhaltungsrücklage", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Bargeld", DistributionKey.C_EQUAL)
 						);
 				
 				businessAccountRepo.saveAll(asList);

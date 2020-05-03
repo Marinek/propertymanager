@@ -56,7 +56,7 @@
 					<div class="form-group row">
 						<label for="externReference" class="col-4 col-form-label">Referenz</label>
 						<div class="col-8">
-							<input id="externReference" name="externReference"
+							<input th:field="*{externReference}" id="externReference" name="externReference"
 								placeholder="Vertragsnummer, Kontonummer oder Bezeichnung"
 								type="text" class="form-control">
 						</div>
@@ -64,7 +64,7 @@
 					<div class="form-group row">
 						<label class="col-4 col-form-label" for="note">Hinweise</label>
 						<div class="col-8">
-							<input id="note" name="note" placeholder="Hinweis" type="text"
+							<input th:field="*{note}" id="note" name="note" placeholder="Hinweis" type="text"
 								class="form-control">
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 						<label for="budget" class="col-4 col-form-label">Budget in
 							&euro;</label>
 						<div class="col-8">
-							<input id="budget" name="budget" placeholder="&euro;" type="text"
+							<input th:field="*{budget}" id="budget" name="budget" placeholder="&euro;" type="text"
 								class="form-control">
 						</div>
 					</div>
@@ -82,6 +82,7 @@
 						</div>
 					</div>
 					<input type="hidden" th:field="*{periode}">
+					<input type="hidden" th:field="*{id}">
 				</form>
 			</div>
 		</div>

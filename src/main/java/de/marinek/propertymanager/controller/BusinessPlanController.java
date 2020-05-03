@@ -84,6 +84,17 @@ public class BusinessPlanController {
 		return "redirect:/plan/show/" + b.getPeriode().getId();
 	}
 	
+	@RequestMapping("edit/budget/{id}")
+	public String editBudget(@PathVariable("id") Long bId, Model model) {
+		
+		BudgetPlanDTO budgetPlan = planRepo.findById(bId).get();
+		
+		addBudget(budgetPlan.getPeriode().getId(), model);
+		model.addAttribute("budget", budgetPlan);
+		
+		return "views/plans/plan_edit";		
+	}
+	
 	@RequestMapping("/add/apartment/{id}")
 	public String addApartment(@PathVariable("id") Long periodId, Model model) {
 		Optional<PeriodDTO> period = repo.findById(periodId);
