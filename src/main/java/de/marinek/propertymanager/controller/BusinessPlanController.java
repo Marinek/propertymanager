@@ -1,5 +1,6 @@
 package de.marinek.propertymanager.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -62,11 +63,14 @@ public class BusinessPlanController {
 		Optional<PeriodDTO> period = repo.findById(id);
 		Iterable<PartnerDTO> partnerList = partnerRepo.findAll();
 		Iterable<BookingAccount> bookingAccounts = bookingAccountRepo.findAll();
+		List<BudgetPlanDTO> findAllWithNoChilds = planRepo.findAllWithNoChilds();
 
 		BudgetPlanDTO newBudgetPlan = new BudgetPlanDTO();
 		newBudgetPlan.setPeriode(period.get());
 
 		model.addAttribute("period", period.get());
+		model.addAttribute("parentBudgets", findAllWithNoChilds);
+		
 		model.addAttribute("budget", newBudgetPlan);
 		model.addAttribute("partner", partnerList);
 		model.addAttribute("accounts", bookingAccounts);

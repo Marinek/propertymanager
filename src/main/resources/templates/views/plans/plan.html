@@ -9,11 +9,13 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<h4 class="card-title mb-0">Ausgaben</h4>
-						<div class="small text-muted" th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">Ausgaben</div>
+						<div class="small text-muted"
+							th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">Ausgaben</div>
 					</div>
 
 					<div class="col-sm-8 hidden-sm-down">
-						<a th:href="'/plan/add/' + ${period.id}" class="btn btn-outline-primary float-right"><i
+						<a th:href="'/plan/add/' + ${period.id}"
+							class="btn btn-outline-primary float-right"><i
 							class="fa fa-magic"></i>&nbsp; Budget hinzuf&uuml;gen</a>
 					</div>
 				</div>
@@ -22,28 +24,41 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th scope="col">Vertragsart</th>
+							<th colspan="2" scope="col">Vertragsart</th>
 							<th scope="col">Vertragspartner</th>
 							<th scope="col">Vertragsnummer</th>
 							<th class="text-right" scope="col">Plan</th>
 							<th class="text-right" scope="col">Hinweise</th>
 						</tr>
 					</thead>
-					<tr th:if="${period.bookingAccounts.empty}">
-						<td colspan="5">Es sind keine Budgetpl&auml;ne vorhanden.</td>
-					</tr>
-					<tr
-						th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() != 'INCOME']}">
-						<td><a th:href="@{/plan/edit/budget/{id}(id=${account.id})}"><span th:text="${account.bookingAccount.name}"></span></a></td>
-						<td><span th:text="${account.partner.name}"></span></td>
-						<td><span th:text="${account.externReference}"></span></td>
-						<td class="text-right text-nowrap"><span
-							th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span>
-							&euro;</td>
-						<td class="text-right"><span th:text="${account.note}"></span></td>
-					</tr>
-					<tbody>
+					<tbody th:if="${period.bookingAccounts.empty}">
+						<tr>
+							<td colspan="5">Es sind keine Budgetpl&auml;ne vorhanden.</td>
+						</tr>
 					</tbody>
+					<th:block th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() != 'INCOME' && parentBudget == null]}">
+						<tr>
+							<td colspan="2"><a th:href="@{/plan/edit/budget/{id}(id=${account.id})}"><span
+									th:text="${account.bookingAccount.name}"></span></a></td>
+							<td><span th:text="${account.partner.name}"></span></td>
+							<td><span th:text="${account.externReference}"></span></td>
+							<td class="text-right text-nowrap"><span
+								th:text="${#numbers.formatDecimal(account.budget, 0, 'POINT', 2, 'COMMA')}"></span>
+								&euro;</td>
+							<td class="text-right"><span th:text="${account.note}"></span></td>
+						</tr>
+						<tr th:each="accountsub : ${account.childBudgets}">
+							<td align="center" valign="middle"><i class="fa fa-chevron-right"></i></td>
+							<td><a th:href="@{/plan/edit/budget/{id}(id=${accountsub.id})}"><span
+									th:text="${accountsub.bookingAccount.name}"></span></a></td>
+							<td><span th:text="${accountsub.partner.name}"></span></td>
+							<td><span th:text="${accountsub.externReference}"></span></td>
+							<td class="text-right text-nowrap"><span
+								th:text="${#numbers.formatDecimal(accountsub.budget, 0, 'POINT', 2, 'COMMA')}"></span>
+								&euro;</td>
+							<td class="text-right"><span th:text="${accountsub.note}"></span></td>
+						</tr>
+					</th:block>
 				</table>
 			</div>
 		</div>
@@ -52,11 +67,13 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<h4 class="card-title mb-0">Einnahmen</h4>
-						<div class="small text-muted" th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">Ausgaben</div>
+						<div class="small text-muted"
+							th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">Ausgaben</div>
 					</div>
 
 					<div class="col-sm-8 hidden-sm-down">
-						<a th:href="'/plan/add/' + ${period.id}" class="btn btn-outline-primary float-right"><i
+						<a th:href="'/plan/add/' + ${period.id}"
+							class="btn btn-outline-primary float-right"><i
 							class="fa fa-magic"></i>&nbsp; Einnahmen hinzuf&uuml;gen</a>
 					</div>
 				</div>
@@ -77,7 +94,8 @@
 					</tr>
 					<tr
 						th:each="account : ${period.bookingAccounts.?[bookingAccount.type.toString() == 'INCOME']}">
-						<td><a th:href="@{/plan/edit/budget/{id}(id=${account.id})}"><span th:text="${account.bookingAccount.name}"></span></a></td>
+						<td><a th:href="@{/plan/edit/budget/{id}(id=${account.id})}"><span
+								th:text="${account.bookingAccount.name}"></span></a></td>
 						<td><span th:text="${account.partner.name}"></span></td>
 						<td><span th:text="${account.externReference}"></span></td>
 						<td class="text-right text-nowrap"><span
@@ -95,11 +113,14 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<h4 class="card-title mb-0">Wohnungen</h4>
-						<div class="small text-muted" th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">01.01.20xx - 31.12.20xx</div>
+						<div class="small text-muted"
+							th:text="${#dates.format(period.startDate,'dd.MM.yyyy')} + '&nbsp;-&nbsp;' + ${#dates.format(period.endDate,'dd.MM.yyyy')}">01.01.20xx
+							- 31.12.20xx</div>
 					</div>
 
 					<div class="col-sm-8 hidden-sm-down">
-						<a th:href="'/plan/add/apartment/' + ${period.id}" class="btn btn-outline-primary float-right"><i
+						<a th:href="'/plan/add/apartment/' + ${period.id}"
+							class="btn btn-outline-primary float-right"><i
 							class="fa fa-magic"></i>&nbsp; Wohnung hinzuf&uuml;gen</a>
 					</div>
 				</div>
@@ -114,13 +135,14 @@
 						</tr>
 					</thead>
 					<tr th:if="${period.bookingAccounts.empty}">
-						<td colspan="5">Es sind keine zugeordneten Wohnungen vorhanden.</td>
+						<td colspan="5">Es sind keine zugeordneten Wohnungen
+							vorhanden.</td>
 					</tr>
-					<tr
-						th:each="items : ${period.appartments}">
+					<tr th:each="items : ${period.appartments}">
 						<td><span th:text="${items.apartment.name}"></span></td>
-						<td><span th:text="${items.apartment.area}"></span> m&sup2;<br /><span th:text="${items.apartment.shares}"></span> / 1000.0</td>
-							<td><span th:text="${items.persons}"></span></td>
+						<td><span th:text="${items.apartment.area}"></span> m&sup2;<br />
+							<span th:text="${items.apartment.shares}"></span> / 1000.0</td>
+						<td><span th:text="${items.persons}"></span></td>
 					</tr>
 					<tbody>
 					</tbody>
@@ -140,7 +162,8 @@
 			<div class="page-header float-right">
 				<div class="page-title">
 					<ol class="breadcrumb text-right">
-						<li class="active" th:text="'Erstellt am: ' + ${#dates.format(period.createdAt,'dd.MM.yyyy')}">Liste</li>
+						<li class="active"
+							th:text="'Erstellt am: ' + ${#dates.format(period.createdAt,'dd.MM.yyyy')}">Liste</li>
 					</ol>
 				</div>
 			</div>

@@ -20,6 +20,25 @@
 						</button>
 					</div>
 					<div class="form-group row">
+						<label for="partner" class="col-4 col-form-label">&Uuml;bergeordnetes Budget</label>
+						<div class="col-8">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-address-card"></i>
+									</div>
+								</div>
+								<select class="form-control" id="partner" name="partner"
+									th:field="*{parentBudget}">
+									<option  th:value="null"
+										th:text="'Keins'" />
+									<option th:each="p : ${parentBudgets}" th:value="${p.id}"
+										th:text="${p.periode.year + ' - ' + p.partner.partnerIdent + ' - ' + p.bookingAccount.name}" />
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
 						<label for="partner" class="col-4 col-form-label">Vertragspartner</label>
 						<div class="col-8">
 							<div class="input-group">

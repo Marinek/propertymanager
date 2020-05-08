@@ -8,9 +8,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
@@ -20,13 +20,11 @@ import de.marinek.propertymanager.domain.accounting.BookingAccount;
 import de.marinek.propertymanager.domain.partner.PartnerDTO;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "budget_plan")
 @Getter
 @Setter
-@ToString
 public class BudgetPlanDTO extends DataTransfereObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -47,6 +45,13 @@ public class BudgetPlanDTO extends DataTransfereObject implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private BookingAccount bookingAccount;
 	
+	@ManyToOne
+	private BudgetPlanDTO parentBudget;
+	
+	@OneToMany(mappedBy = "parentBudget")
+	@OrderBy(value = "id asc")
+	private Set<BudgetPlanDTO> childBudgets = new HashSet<BudgetPlanDTO>();
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private PeriodDTO periode;
 	
@@ -62,5 +67,9 @@ public class BudgetPlanDTO extends DataTransfereObject implements Serializable {
 		
 		return sum;
 	}
-		
+
+	@Override
+	public String toString() {
+		return bookingAccount + " / " + partner;
+	}
 }

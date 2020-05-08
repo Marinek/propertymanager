@@ -44,14 +44,11 @@ public class IndexController {
 
 		if(businessPlanRepo.count() == 0) {
 			{
-				;
 				
 				List<BookingAccount> asList = Arrays.asList(
-						BookingAccount.createExpense("Wasser", DistributionKey.A_PP),
-						BookingAccount.createExpense("Heizung / Strom", DistributionKey.B_AREA),
 						BookingAccount.createExpense("Entwässerung incl. Niederschlagsw. Beb. Fl.", DistributionKey.A_PP),
-						BookingAccount.createExpense("Müllabfuhr", DistributionKey.C_EQUAL),
 						BookingAccount.createExpense("Straßenreinigung", DistributionKey.C_EQUAL),
+						BookingAccount.createExpense("Müllentsorgung", DistributionKey.A_PP),
 						BookingAccount.createExpense("Gebäudeversicherung", DistributionKey.D_ASSETS),
 						BookingAccount.createExpense("Kontoführung", DistributionKey.C_EQUAL),
 						BookingAccount.createExpense("Wartung Heizung", DistributionKey.C_EQUAL),
@@ -145,7 +142,7 @@ public class IndexController {
 				{
 					BudgetPlanDTO plan = new BudgetPlanDTO();
 					
-					plan.setBookingAccount(BookingAccount.createExpense("Müllabfuhr", DistributionKey.C_EQUAL));
+					plan.setBookingAccount(BookingAccount.createExpense("Grundbesitzabgaben", DistributionKey.C_EQUAL));
 					plan.setBudget(555.0);
 					plan.setExternReference("XS 123/123/123");
 					

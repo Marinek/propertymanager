@@ -17,7 +17,7 @@ public interface BusinessPlanRepository extends  CrudRepository<BudgetPlanDTO, L
 	
 	public List<BudgetPlanDTO> findAll(Example<BudgetPlanDTO> plan);
 	
-	@Query("select b from BudgetPlanDTO b where b.bookingAccount = :budgetId and b.periode = :periode ")
-	public BudgetPlanDTO findByPeriodAndBudgetId(Long periode, Long budgetId);
+	@Query("select b from BudgetPlanDTO b where b.parentBudget is null")
+	public List<BudgetPlanDTO> findAllWithNoChilds();
 	
 }
